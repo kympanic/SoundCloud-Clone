@@ -7,21 +7,21 @@ const demoUsers = [
 		lastName: "Yoo",
 		email: "demo@gmail.com",
 		username: "Panicky",
-		hashPassword: bcrypt.hashSync("password"),
+		hashedPassword: bcrypt.hashSync("password"),
 	},
 	{
 		firstName: "James",
 		lastName: "Ra",
 		email: "army@gmail.com",
 		username: "SejunRa",
-		hashPassword: bcrypt.hashSync("password2"),
+		hashedPassword: bcrypt.hashSync("password2"),
 	},
 	{
 		firstName: "John",
 		lastName: "Kim",
 		email: "digitsnu@gmail.com",
 		username: "DigitsNu",
-		hashPassword: bcrypt.hashSync("password3"),
+		hashedPassword: bcrypt.hashSync("password3"),
 	},
 ];
 
