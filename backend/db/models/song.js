@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
 			Song.belongsToMany(models.Playlist, {
 				through: models.PlaylistSong,
 			});
-			//must add association for join table playlistSongs
 		}
 	}
 	Song.init(
