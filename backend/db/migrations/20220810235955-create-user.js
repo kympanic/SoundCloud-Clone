@@ -22,7 +22,7 @@ module.exports = {
 				unique: true,
 			},
 			username: {
-				type: Sequelize.STRING(30),
+				type: Sequelize.STRING,
 				allowNull: false,
 				unique: true,
 			},
