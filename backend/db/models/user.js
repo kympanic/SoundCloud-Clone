@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
 	class User extends Model {
 		toSafeObject() {
 			//context will be the User instance
-			const { id, firstName, lastName, username, email } = this;
-			return { id, firstName, lastName, username, email };
+			const { id, firstName, lastName, username, email, previewImage } = this;
+			return { id, firstName, lastName, username, email, previewImage };
 		}
 		validatePassword(password) {
 			return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
 				username,
 				email,
 				hashedPassword,
+				previewImage,
 			});
 			return await User.scope("currentUser").findByPk(user.id);
 		}
@@ -83,13 +84,23 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.BOOLEAN,
 				defaultValue: true,
 			},
+			previewImage: {
+				type: DataTypes.STRING,
+				allowNull: true,
+			},
 		},
 		{
 			sequelize,
 			modelName: "User",
 			defaultScope: {
 				attributes: {
-					exclude: ["hashedPassword", "createdAt", "updatedAt", "isArtist"],
+					exclude: [
+						"hashedPassword",
+						"createdAt",
+						"updatedAt",
+						"isArtist",
+						"previewImage",
+					],
 				},
 			},
 			scopes: {
