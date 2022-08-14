@@ -10,12 +10,19 @@ module.exports = {
 			},
 			userId: {
 				type: Sequelize.INTEGER,
+				allowNull: false,
+				references: {
+					model: "Users",
+					key: "id",
+				},
 			},
 			title: {
 				type: Sequelize.STRING,
+				allowNull: false,
 			},
 			description: {
 				type: Sequelize.STRING,
+				allowNull: false,
 			},
 			previewImage: {
 				type: Sequelize.STRING,
@@ -23,10 +30,12 @@ module.exports = {
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
+				defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
 			},
 			updatedAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
+				defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
 			},
 		});
 	},
