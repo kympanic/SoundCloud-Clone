@@ -4,6 +4,7 @@ const { User } = require("../../db/models");
 const router = express.Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
+const { Song } = require("../../db/models/song");
 
 //middleware to check the body for errors in signup
 const validateSignup = [
@@ -48,4 +49,11 @@ router.post("/", validateSignup, async (req, res) => {
 	});
 });
 
+//get all songs from created by the current user
+//not working currently
+// router.get("/:userId/songs", requireAuth, async (req, res) => {
+// 	const { userId } = req.params;
+// 	const songs = await Song.findByPk(userId);
+// 	res.json(songs);
+// });
 module.exports = router;

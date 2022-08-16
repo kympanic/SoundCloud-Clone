@@ -11,8 +11,13 @@ router.get("/", async (req, res) => {
 	let songs = await Song.findAll({
 		order: [["title"]],
 	});
-
 	res.json(songs);
 });
 
+// Get details of a Song from an id
+router.get("/songs/:songId", async (req, res) => {
+	const song = await Song.findByPk(req.params.songId);
+	console.log(song);
+	// res.json(song);
+});
 module.exports = router;
