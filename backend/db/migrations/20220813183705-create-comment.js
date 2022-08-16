@@ -15,6 +15,7 @@ module.exports = {
 			songId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
+				onDelete: "cascade",
 			},
 			body: {
 				type: Sequelize.STRING,
