@@ -1,10 +1,13 @@
 const express = require("express");
-const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const {
+	setTokenCookie,
+	requireAuth,
+	restoreUser,
+} = require("../../utils/auth");
+const { User, Song } = require("../../db/models");
 const router = express.Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const { Song } = require("../../db/models/song");
 
 //middleware to check the body for errors in signup
 const validateSignup = [
@@ -32,6 +35,7 @@ const validateSignup = [
 
 // Sign up
 router.post("/", validateSignup, async (req, res) => {
+	let query = {};
 	const { firstName, lastName, username, email, password } = req.body;
 	const user = await User.signup({
 		firstName,
@@ -43,17 +47,28 @@ router.post("/", validateSignup, async (req, res) => {
 
 	let token = await setTokenCookie(res, user);
 
+	// query.firstName = user.firstName;
+	// query.lastName = user.lastName;
+	// query.username = user.username;
+	// query.email = user.email;
+	// query.password = user.password;
+	// query.token = token;
+
 	return res.json({
 		user,
 		token,
 	});
 });
 
-//get all songs from created by the current user
-//not working currently
-// router.get("/:userId/songs", requireAuth, async (req, res) => {
-// 	const { userId } = req.params;
-// 	const songs = await Song.findByPk(userId);
-// 	res.json(songs);
-// });
+// get all songs from created by the current user
+
+router.get("/songs", requireAuth, restoreUser, async (req, res) => {
+	const { user } = req;
+	const Songs = await Song.findAll({
+		where: {
+			userId: user.id,
+		},
+	});
+	res.json({ Songs });
+});
 module.exports = router;
