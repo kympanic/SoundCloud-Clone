@@ -52,7 +52,7 @@ const restoreUser = (req, res, next) => {
 
 const requireAuth = function (req, res, next) {
 	if (req.user) return next();
-	res.status = 404;
+	res.statusCode = 401;
 	res.json({
 		message: "Authentication required",
 		statusCode: 401,

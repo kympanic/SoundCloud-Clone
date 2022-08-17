@@ -6,11 +6,11 @@ const { Album } = require("../../db/models");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-	const albums = await Album.findAll({
+	const Albums = await Album.findAll({
 		order: [["title"]],
 	});
 
-	res.json(albums);
+	res.json({ Albums });
 });
 
 module.exports = router;
