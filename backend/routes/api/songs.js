@@ -11,8 +11,14 @@ const { User, Song, Album } = db;
 
 const router = express.Router();
 
+const validateSong = [
+	check("title")
+		.exists({ checkFalsy: true })
+		.withMessage("Song title is required"),
+];
+
 //get all songs
-router.get("/", async (req, res) => {
+router.get("/", restoreUser, async (req, res) => {
 	let Songs = await Song.findAll({
 		order: [["title"]],
 	});
@@ -23,7 +29,6 @@ router.get("/", async (req, res) => {
 
 //need modifications
 router.get("/:songId", async (req, res) => {
-	let query = {};
 	const song = await Song.findByPk(req.params.songId, {
 		include: [
 			{
@@ -38,7 +43,7 @@ router.get("/:songId", async (req, res) => {
 
 //create a song
 
-router.post("/", requireAuth, restoreUser, async (req, res) => {
+router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 	const { title, description, url, imageUrl, albumId } = req.body;
 	const { user } = req;
 	const newSong = await Song.create({

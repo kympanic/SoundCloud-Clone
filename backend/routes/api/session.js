@@ -1,5 +1,9 @@
 const express = require("express");
-const { setTokenCookie, restoreUser } = require("../../utils/auth");
+const {
+	setTokenCookie,
+	restoreUser,
+	requireAuth,
+} = require("../../utils/auth");
 const { User } = require("../../db/models");
 const router = express.Router();
 const { check } = require("express-validator");
@@ -18,7 +22,7 @@ const validateLogin = [
 ];
 
 // Restore session user
-router.get("/", restoreUser, (req, res) => {
+router.get("/", requireAuth, restoreUser, (req, res) => {
 	const { user } = req;
 	if (user) {
 		return res.json({
@@ -34,10 +38,11 @@ router.post("/", validateLogin, async (req, res, next) => {
 	const user = await User.login({ credential, password });
 
 	if (!user) {
-		const err = new Error("Login failed");
-		err.status = 401;
-		err.title = "Login failed";
-		err.errors = ["The provided credentials were invalid."];
+		res.status = 401;
+		res.json({
+			message: "Invalid credentials",
+			statusCode: res.status,
+		});
 		return next(err);
 	}
 
