@@ -13,4 +13,4 @@ router.get("/", async (req, res) => {
 	res.json(albums);
 });
 
-module.exports = router;
+router.module.exports = router;

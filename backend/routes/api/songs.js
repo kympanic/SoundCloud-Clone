@@ -20,6 +20,8 @@ router.get("/", async (req, res) => {
 });
 
 // Get details of a Song from an id
+
+//need modifications
 router.get("/:songId", async (req, res) => {
 	let query = {};
 	const song = await Song.findByPk(req.params.songId, {
@@ -50,6 +52,39 @@ router.post("/", requireAuth, restoreUser, async (req, res) => {
 	res.json(newSong);
 });
 
+//edit a song
+router.put("/:songId", requireAuth, restoreUser, async (req, res) => {
+	const { songId } = req.params;
+	const { user } = req;
+	const { title, description, url, imageUrl, albumId } = req.body;
+	const editedSong = await Song.findByPk(songId);
+
+	//check if proper user is editing the song
+	if (editedSong.userId !== user.id) {
+		res.statusCode = 403;
+		return res.json({
+			message: "Forbidden",
+			statusCode: res.statusCode,
+		});
+	}
+	if (editedSong) {
+		editedSong.title = title;
+		editedSong.description = description;
+		editedSong.url = url;
+		editedSong.imageUrl = imageUrl;
+		editedSong.albumId = albumId;
+
+		await editedSong.save();
+
+		res.json(editedSong);
+	} else {
+		res.json({
+			message: "Song couldn't be found",
+			statusCode: 404,
+		});
+	}
+});
+
 //delete a song
 router.delete("/:songId", requireAuth, restoreUser, async (req, res) => {
 	const { songId } = req.params;
@@ -62,8 +97,10 @@ router.delete("/:songId", requireAuth, restoreUser, async (req, res) => {
 		});
 	}
 	if (deletedSong.userId !== user.id) {
+		res.statusCode = 403;
 		return res.json({
-			message: "Song must belong to current user",
+			message: "Forbidden",
+			statusCode: res.statusCode,
 		});
 	}
 

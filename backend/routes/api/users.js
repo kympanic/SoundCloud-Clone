@@ -35,7 +35,6 @@ const validateSignup = [
 
 // Sign up
 router.post("/", validateSignup, async (req, res) => {
-	let query = {};
 	const { firstName, lastName, username, email, password } = req.body;
 	const user = await User.signup({
 		firstName,
@@ -46,13 +45,6 @@ router.post("/", validateSignup, async (req, res) => {
 	});
 
 	let token = await setTokenCookie(res, user);
-
-	// query.firstName = user.firstName;
-	// query.lastName = user.lastName;
-	// query.username = user.username;
-	// query.email = user.email;
-	// query.password = user.password;
-	// query.token = token;
 
 	return res.json({
 		user,
