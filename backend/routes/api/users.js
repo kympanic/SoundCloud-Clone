@@ -4,7 +4,7 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { User, Song } = require("../../db/models");
+const { User, Song, Album } = require("../../db/models");
 const router = express.Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -52,15 +52,4 @@ router.post("/", validateSignup, async (req, res) => {
 	});
 });
 
-// get all songs from created by the current user
-
-router.get("/songs", requireAuth, restoreUser, async (req, res) => {
-	const { user } = req;
-	const Songs = await Song.findAll({
-		where: {
-			userId: user.id,
-		},
-	});
-	res.json({ Songs });
-});
 module.exports = router;
