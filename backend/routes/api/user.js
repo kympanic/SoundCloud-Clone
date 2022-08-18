@@ -33,4 +33,5 @@ router.get("/albums", requireAuth, restoreUser, async (req, res) => {
 
 	res.json({ Albums });
 });
+
 module.exports = router;

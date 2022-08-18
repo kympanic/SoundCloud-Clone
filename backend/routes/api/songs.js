@@ -7,6 +7,7 @@ const {
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const db = require("../../db/models");
+const user = require("../../db/models/user");
 const { User, Song, Album } = db;
 
 const router = express.Router();
@@ -29,12 +30,22 @@ router.get("/", restoreUser, async (req, res) => {
 
 //need modifications
 router.get("/:songId", async (req, res) => {
-	const song = await Song.findByPk(req.params.songId, {
+	const { songId } = req.params;
+	const song = await Song.findByPk(songId, {
 		include: [
 			{
 				model: User,
-				include: [{ model: Album }],
+				required: true,
 			},
+			{
+				model: Album,
+				attributes: {
+					exclude: ["userId", "description", "createdAt", "updatedAt"],
+				},
+				required: true /* ... */,
+			},
+			User,
+			Album, // Shorthand syntax for { model: Qux } also works here
 		],
 	});
 
