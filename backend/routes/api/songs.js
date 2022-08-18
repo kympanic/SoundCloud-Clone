@@ -28,28 +28,42 @@ router.get("/", restoreUser, async (req, res) => {
 
 // Get details of a Song from an id
 
-//need modifications
 router.get("/:songId", async (req, res) => {
 	const { songId } = req.params;
-	const song = await Song.findByPk(songId, {
-		include: [
-			{
-				model: User,
-				required: true,
-			},
-			{
-				model: Album,
-				attributes: {
-					exclude: ["userId", "description", "createdAt", "updatedAt"],
-				},
-				required: true /* ... */,
-			},
-			User,
-			Album, // Shorthand syntax for { model: Qux } also works here
-		],
+	const song = await Song.findByPk(songId);
+	if (!song) {
+		res.statusCode = 404;
+		res.json({
+			message: "Song couldn't be found",
+			statusCode: 404,
+		});
+	}
+	const artist = await song.getUser({
+		attributes: {
+			exclude: ["firstName", "lastName", "email"],
+			include: ["previewImage"],
+		},
+	});
+	const album = await song.getAlbum({
+		attributes: {
+			exclude: ["userId", "description", "createdAt", "updatedAt"],
+		},
 	});
 
-	res.json(song);
+	const payload = {
+		id: song.id,
+		userId: song.userId,
+		albumId: song.albumId,
+		title: song.title,
+		description: song.description,
+		url: song.url,
+		createdAt: song.createdAt,
+		updatedAt: song.updatedAt,
+		previewImage: song.previewImage,
+		Artist: artist,
+		Album: album,
+	};
+	res.json(payload);
 });
 
 //create a song
