@@ -107,9 +107,9 @@ router.put("/:songId", requireAuth, restoreUser, async (req, res) => {
 		editedSong.albumId = albumId;
 
 		await editedSong.save();
-
 		res.json(editedSong);
-	} else {
+	}
+	if (!editedSong) {
 		res.json({
 			message: "Song couldn't be found",
 			statusCode: 404,

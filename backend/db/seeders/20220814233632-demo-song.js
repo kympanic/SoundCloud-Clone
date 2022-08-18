@@ -12,7 +12,7 @@ const demoSongs = [
 	},
 	{
 		userId: 1,
-		albumId: 1,
+		albumId: 2,
 		title: "The Worst",
 		description: "Song about the worst",
 		url: "https://test2.mp3",
@@ -21,7 +21,7 @@ const demoSongs = [
 	},
 	{
 		userId: 1,
-		albumId: 2,
+		albumId: 1,
 		title: "Meaty Meat Meat",
 		description: "Song about all the meats",
 		url: "https://test3.mp3",
@@ -30,7 +30,7 @@ const demoSongs = [
 	},
 	{
 		userId: 1,
-		albumId: 3,
+		albumId: 2,
 		title: "Heaven",
 		description: "Song about the afterlife",
 		url: "https://test4.mp3",
@@ -38,8 +38,8 @@ const demoSongs = [
 			"https://loremflickr.com/cache/resized/65535_51926136127_27db43a6ca_320_240_nofilter.jpg",
 	},
 	{
-		userId: 1,
-		albumId: 2,
+		userId: 2,
+		albumId: 3,
 		title: "Love Triangle",
 		description: "Song about love triangles",
 		url: "https://test5.mp3",
@@ -48,7 +48,7 @@ const demoSongs = [
 	},
 	{
 		userId: 2,
-		albumId: 3,
+		albumId: 4,
 		title: "Dota",
 		description: "Song about Defense of the Ancients",
 		url: "https://test6.mp3",
@@ -66,7 +66,7 @@ const demoSongs = [
 	},
 	{
 		userId: 2,
-		albumId: 3,
+		albumId: 4,
 		title: "Potatoes are the best",
 		description: "Song about how potatoes are amazing",
 		url: "https://test8.mp3",
@@ -75,7 +75,7 @@ const demoSongs = [
 	},
 	{
 		userId: 2,
-		albumId: 4,
+		albumId: 3,
 		title: "What does the chimp say",
 		description: "Song about how chimps talk to eachother",
 		url: "https://test9.mp3",
@@ -102,7 +102,7 @@ const demoSongs = [
 	},
 	{
 		userId: 3,
-		albumId: 5,
+		albumId: 6,
 		title: "Journey",
 		description: "Song about lifes journeys",
 		url: "https://test12.mp3",
