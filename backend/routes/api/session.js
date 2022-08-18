@@ -21,14 +21,12 @@ const validateLogin = [
 	handleValidationErrors,
 ];
 
-// Restore session user
-router.get("/", requireAuth, restoreUser, (req, res) => {
+// Get a session user
+router.get("/", requireAuth, restoreUser, async (req, res) => {
 	const { user } = req;
-	if (user) {
-		return res.json({
-			user: user.toSafeObject(),
-		});
-	} else return res.json({});
+	const currentUser = await User.findByPk(user.id);
+
+	res.json(currentUser);
 });
 
 // Log User In
@@ -48,10 +46,15 @@ router.post("/", validateLogin, async (req, res, next) => {
 
 	let token = await setTokenCookie(res, user);
 
-	return res.json({
-		user,
+	const payload = {
+		id: user.id,
+		firstName: user.firstName,
+		lastName: user.email,
+		username: user.username,
 		token,
-	});
+	};
+
+	return res.json(payload);
 });
 
 // Log User Out

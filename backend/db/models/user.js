@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
 	class User extends Model {
 		toSafeObject() {
 			//context will be the User instance
-			const { id, firstName, lastName, username, email, previewImage } = this;
-			return { id, firstName, lastName, username, email, previewImage };
+			const { id, firstName, lastName, username, email } = this;
+			return { id, firstName, lastName, username, email };
 		}
 		validatePassword(password) {
 			return bcrypt.compareSync(password, this.hashedPassword.toString());

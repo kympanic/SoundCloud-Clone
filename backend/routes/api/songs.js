@@ -68,6 +68,7 @@ router.get("/:songId", async (req, res) => {
 
 //create a song
 
+//error handling not current working -must work on validateSong
 router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 	const { title, description, url, imageUrl, albumId } = req.body;
 	const { user } = req;
@@ -83,6 +84,7 @@ router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 });
 
 //edit a song
+//validation as well
 router.put("/:songId", requireAuth, restoreUser, async (req, res) => {
 	const { songId } = req.params;
 	const { user } = req;
