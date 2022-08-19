@@ -145,7 +145,7 @@ router.put("/:songId", requireAuth, restoreUser, async (req, res) => {
 		editedSong.title = title;
 		editedSong.description = description;
 		editedSong.url = url;
-		editedSong.imageUrl = imageUrl;
+		editedSong.previewImage = imageUrl;
 		editedSong.albumId = albumId;
 
 		await editedSong.save();

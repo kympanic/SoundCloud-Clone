@@ -4,7 +4,7 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { User, Song, Album, Comment } = require("../../db/models");
+const { User, Song, Album, Comment, Playlist } = require("../../db/models");
 const router = express.Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");

@@ -37,11 +37,7 @@ router.get("/:albumId", async (req, res) => {
 			include: ["previewImage"],
 		},
 	});
-	const songs = await currentAlbum.getSongs({
-		// attributes: {
-		// 	exclude: ["userId", "description", "createdAt", "updatedAt"],
-		// },
-	});
+	const songs = await currentAlbum.getSongs({});
 
 	const payload = {
 		id: currentAlbum.id,
@@ -58,7 +54,7 @@ router.get("/:albumId", async (req, res) => {
 });
 
 //create a album
-
+//work on validation
 router.post("/", requireAuth, restoreUser, async (req, res) => {
 	const { title, description, imageUrl } = req.body;
 	const { user } = req;
@@ -89,7 +85,7 @@ router.put("/:albumId", requireAuth, restoreUser, async (req, res) => {
 	if (editedAlbum) {
 		editedAlbum.title = title;
 		editedAlbum.description = description;
-		editedAlbum.imageUrl = imageUrl;
+		editedAlbum.previewImage = imageUrl;
 
 		await editedAlbum.save();
 
