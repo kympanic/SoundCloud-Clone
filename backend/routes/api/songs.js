@@ -8,7 +8,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const db = require("../../db/models");
 const user = require("../../db/models/user");
-const { User, Song, Album } = db;
+const { User, Song, Album, Comment } = db;
 
 const router = express.Router();
 
@@ -64,6 +64,37 @@ router.get("/:songId", async (req, res) => {
 		Album: album,
 	};
 	res.json(payload);
+});
+
+//Get all Comments by a Song's id
+//need to exclude attributes in the user include model
+//and error does not work properly if comments is not found
+router.get("/:songId/comments", async (req, res) => {
+	const { songId } = req.params;
+	const song = await Song.findByPk(songId);
+	if (!song) {
+		res.statusCode = 404;
+		res.json({
+			message: "Song couldn't be found",
+			statusCode: 404,
+		});
+	}
+
+	const Comments = await song.getComments({
+		include: [
+			{
+				model: User,
+			},
+		],
+	});
+
+	if (!Comments) {
+		res.json({
+			message: "There are no comments",
+		});
+	}
+
+	res.json({ Comments });
 });
 
 //create a song
