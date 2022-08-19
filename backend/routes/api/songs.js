@@ -97,8 +97,6 @@ router.get("/:songId/comments", async (req, res) => {
 	res.json({ Comments });
 });
 
-//create a song
-
 //error handling not current working -must work on validateSong
 router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 	const { title, description, url, imageUrl, albumId } = req.body;
@@ -112,6 +110,19 @@ router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 		albumId,
 	});
 	res.json(newSong);
+});
+
+router.post("/:songId/comments", requireAuth, restoreUser, async (req, res) => {
+	const { user } = req;
+	const { songId } = req.params;
+	const { body } = req.body;
+
+	const newComment = await Comment.create({
+		userId: user.id,
+		songId,
+		body,
+	});
+	res.json(newComment);
 });
 
 //edit a song
@@ -153,12 +164,15 @@ router.delete("/:songId", requireAuth, restoreUser, async (req, res) => {
 	const { songId } = req.params;
 	const { user } = req;
 	const deletedSong = await Song.findByPk(songId);
+	//check to see if song exists
 	if (!deletedSong) {
+		res.statusCode = 404;
 		return res.json({
 			message: "Song couldn't be found",
 			statusCode: 404,
 		});
 	}
+	//check to see if the song belongs to the logged in user
 	if (deletedSong.userId !== user.id) {
 		res.statusCode = 403;
 		return res.json({
