@@ -9,6 +9,23 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { Album } = require("../../db/models");
 const router = express.Router();
 
+//validate middlewares - will move in the future
+
+const validateAlbum = [
+	check("title")
+		.exists({ checkFalsy: true })
+		.withMessage("Album title is required")
+		.notEmpty()
+		.withMessage("Album title is required"),
+	check("description")
+		.exists({ checkFalsy: true })
+		.withMessage("Description is required")
+		.notEmpty()
+		.withMessage("Description is required"),
+
+	handleValidationErrors,
+];
+
 //get all albums
 
 router.get("/", async (req, res) => {
@@ -54,50 +71,62 @@ router.get("/:albumId", async (req, res) => {
 });
 
 //create a album
-//work on validation
-router.post("/", requireAuth, restoreUser, async (req, res) => {
+
+router.post("/", requireAuth, restoreUser, validateAlbum, async (req, res) => {
 	const { title, description, imageUrl } = req.body;
 	const { user } = req;
+
 	const newAlbum = await Album.create({
 		userId: user.id,
 		title,
 		description,
 		previewImage: imageUrl,
 	});
-	res.json(newAlbum);
+
+	//get the album with all the attributes
+	const getAlbum = await Album.findByPk(newAlbum.id);
+
+	res.json(getAlbum);
 });
 
 //edit an album
-router.put("/:albumId", requireAuth, restoreUser, async (req, res) => {
-	const { albumId } = req.params;
-	const { user } = req;
-	const { title, description, imageUrl } = req.body;
-	const editedAlbum = await Album.findByPk(albumId);
+router.put(
+	"/:albumId",
+	requireAuth,
+	restoreUser,
+	validateAlbum,
+	async (req, res) => {
+		const { albumId } = req.params;
+		const { user } = req;
+		const { title, description, imageUrl } = req.body;
+		const editedAlbum = await Album.findByPk(albumId);
 
-	//check if proper user is editing the song
-	if (editedAlbum.userId !== user.id) {
-		res.statusCode = 403;
-		return res.json({
-			message: "Forbidden",
-			statusCode: res.statusCode,
-		});
+		//check if proper user is editing the song
+		if (editedAlbum.userId !== user.id) {
+			res.statusCode = 403;
+			return res.json({
+				message: "Forbidden",
+				statusCode: res.statusCode,
+			});
+		}
+		if (editedAlbum) {
+			editedAlbum.title = title;
+			editedAlbum.description = description;
+			editedAlbum.previewImage = imageUrl;
+
+			await editedAlbum.save();
+
+			const currentAlbum = await Album.findByPk(editedAlbum.id);
+			res.json(currentAlbum);
+		} else {
+			res.statusCode = 404;
+			res.json({
+				message: "Album couldn't be found",
+				statusCode: 404,
+			});
+		}
 	}
-	if (editedAlbum) {
-		editedAlbum.title = title;
-		editedAlbum.description = description;
-		editedAlbum.previewImage = imageUrl;
-
-		await editedAlbum.save();
-
-		res.json(editedAlbum);
-	} else {
-		res.statusCode = 404;
-		res.json({
-			message: "Album couldn't be found",
-			statusCode: 404,
-		});
-	}
-});
+);
 
 //delete a album
 router.delete("/:albumId", requireAuth, restoreUser, async (req, res) => {

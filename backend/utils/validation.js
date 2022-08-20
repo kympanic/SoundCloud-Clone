@@ -6,18 +6,23 @@ const handleValidationErrors = (req, res, next) => {
 	const validationErrors = validationResult(req);
 
 	if (!validationErrors.isEmpty()) {
-		const errors = validationErrors.array().map((error) => `${error.msg}`);
+		const errors = new Object();
+		validationErrors.array().forEach((errObj) => {
+			let errorKey = errObj.param;
+			if (!errors[errorKey]) {
+				errors[errorKey] = errObj.msg;
+			}
+		});
 
 		const err = Error("Bad request.");
 		err.message = "Validation Error";
 		err.errors = errors;
-		// err.status = 400;
 		res.statusCode = 400;
+
 		res.json({
 			message: err.message,
 			statusCode: res.statusCode,
-			// errors: validationErrors.array(),
-			errors: err.errors,
+			errors,
 		});
 		next(err);
 	}

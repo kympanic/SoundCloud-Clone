@@ -11,26 +11,37 @@ const { handleValidationErrors } = require("../../utils/validation");
 
 //edit a comment
 //requires validation
-router.put("/:commentId", requireAuth, restoreUser, async (req, res) => {
-	const { commentId } = req.params;
-	const { user } = req;
-	const { body } = req.body;
-	const editedComment = await Comment.findByPk(commentId);
+router.put(
+	"/:commentId",
+	requireAuth,
+	restoreUser,
+	check("body")
+		.exists({ checkFalsy: true })
+		.withMessage("Comment body text is required")
+		.notEmpty()
+		.withMessage("Comment body text is required"),
+	handleValidationErrors,
+	async (req, res) => {
+		const { commentId } = req.params;
+		const { user } = req;
+		const { body } = req.body;
+		const editedComment = await Comment.findByPk(commentId);
 
-	//check if proper user is editing the song
-	if (editedComment.userId !== user.id) {
-		res.statusCode = 403;
-		return res.json({
-			message: "Forbidden",
-			statusCode: res.statusCode,
-		});
+		//check if proper user is editing the song
+		if (editedComment.userId !== user.id) {
+			res.statusCode = 403;
+			return res.json({
+				message: "Forbidden",
+				statusCode: res.statusCode,
+			});
+		}
+		if (editedComment) {
+			editedComment.body = body;
+		}
+		await editedComment.save();
+		res.json(editedComment);
 	}
-	if (editedComment) {
-		editedComment.body = body;
-	}
-	await editedComment.save();
-	res.json(editedComment);
-});
+);
 
 //delete a comment
 router.delete("/:commentId", requireAuth, restoreUser, async (req, res) => {

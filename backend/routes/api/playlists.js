@@ -9,8 +9,18 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { Album, Playlist, Song, PlaylistSong } = require("../../db/models");
 const router = express.Router();
 
+//validate middlewares - will move in the future
+
+const validatePlaylist = [
+	check("name")
+		.exists({ checkFalsy: true })
+		.withMessage("Playlist name is required")
+		.notEmpty()
+		.withMessage("Playlist name is required"),
+	handleValidationErrors,
+];
+
 //Get details of a Playlist from an id
-//Need to exclude playlistSong
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
 	const currentPlaylist = await Playlist.findByPk(playlistId);
@@ -23,11 +33,7 @@ router.get("/:playlistId", async (req, res) => {
 		});
 	}
 
-	const songs = await currentPlaylist.getSongs({
-		attributes: {
-			exclude: ["PlaylistSongs"],
-		},
-	});
+	const songs = await currentPlaylist.getSongs({ joinTableAttributes: [] });
 
 	const payload = {
 		id: currentPlaylist.id,
@@ -42,45 +48,55 @@ router.get("/:playlistId", async (req, res) => {
 });
 
 // Edit a Playlist
-// work on validation errors
-router.put("/:playlistId", requireAuth, restoreUser, async (req, res) => {
-	const { playlistId } = req.params;
-	const { user } = req;
-	const { name, imageUrl } = req.body;
-	const editedPlaylist = await Playlist.findByPk(playlistId);
-	//check if proper user is editing the song
-	if (editedPlaylist.userId !== user.id) {
-		res.statusCode = 403;
-		return res.json({
-			message: "Forbidden",
-			statusCode: res.statusCode,
+router.put(
+	"/:playlistId",
+	requireAuth,
+	restoreUser,
+	validatePlaylist,
+	async (req, res) => {
+		const { playlistId } = req.params;
+		const { user } = req;
+		const { name, imageUrl } = req.body;
+		const editedPlaylist = await Playlist.findByPk(playlistId);
+		//check if proper user is editing the song
+		if (editedPlaylist.userId !== user.id) {
+			res.statusCode = 403;
+			return res.json({
+				message: "Forbidden",
+				statusCode: res.statusCode,
+			});
+		}
+		if (editedPlaylist) {
+			editedPlaylist.name = name;
+			editedPlaylist.previewImage = imageUrl;
+		}
+		await editedPlaylist.save();
+		res.json(editedPlaylist);
+		res.statusCode = 404;
+		res.json({
+			message: "Playlist couldn't be found",
+			statusCode: 404,
 		});
 	}
-	if (editedPlaylist) {
-		editedPlaylist.name = name;
-		editedPlaylist.previewImage = imageUrl;
-	}
-	await editedPlaylist.save();
-	res.json(editedPlaylist);
-	res.statusCode = 404;
-	res.json({
-		message: "Playlist couldn't be found",
-		statusCode: 404,
-	});
-});
+);
 
 //create a playlist
-//work on validation
-router.post("/", requireAuth, restoreUser, async (req, res) => {
-	const { name, imageUrl } = req.body;
-	const { user } = req;
-	const newPlaylist = await Playlist.create({
-		userId: user.id,
-		name,
-		previewImage: imageUrl,
-	});
-	res.json(newPlaylist);
-});
+router.post(
+	"/",
+	requireAuth,
+	restoreUser,
+	validatePlaylist,
+	async (req, res) => {
+		const { name, imageUrl } = req.body;
+		const { user } = req;
+		const newPlaylist = await Playlist.create({
+			userId: user.id,
+			name,
+			previewImage: imageUrl,
+		});
+		res.status(201).json(newPlaylist);
+	}
+);
 
 //Add a Song to a Playlist based on the Playlists's id
 //requires work
