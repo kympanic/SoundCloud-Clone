@@ -13,7 +13,7 @@ const router = express.Router();
 //Need to exclude playlistSong
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
-	const currentPlaylist = await Playlist.findByPk(playlistId, {});
+	const currentPlaylist = await Playlist.findByPk(playlistId);
 
 	if (!currentPlaylist) {
 		res.statusCode = 404;
@@ -25,7 +25,7 @@ router.get("/:playlistId", async (req, res) => {
 
 	const songs = await currentPlaylist.getSongs({
 		attributes: {
-			exclude: ["PlaylistSong"],
+			exclude: ["PlaylistSongs"],
 		},
 	});
 

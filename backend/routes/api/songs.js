@@ -15,7 +15,13 @@ const router = express.Router();
 const validateSong = [
 	check("title")
 		.exists({ checkFalsy: true })
+		.notEmpty()
 		.withMessage("Song title is required"),
+	check("url")
+		.exists({ checkFalsy: true })
+		.notEmpty()
+		.withMessage("Audio is required"),
+	handleValidationErrors,
 ];
 
 //get all songs
@@ -67,8 +73,7 @@ router.get("/:songId", async (req, res) => {
 });
 
 //Get all Comments by a Song's id
-//need to exclude attributes in the user include model
-//and error does not work properly if comments is not found
+
 router.get("/:songId/comments", async (req, res) => {
 	const { songId } = req.params;
 	const song = await Song.findByPk(songId);
@@ -84,16 +89,16 @@ router.get("/:songId/comments", async (req, res) => {
 		include: [
 			{
 				model: User,
+				attributes: ["id", "username"],
 			},
 		],
 	});
-
-	if (!Comments) {
+	//checks to see if there are any comments
+	if (!Comments[0]) {
 		res.json({
 			message: "There are no comments",
 		});
 	}
-
 	res.json({ Comments });
 });
 
@@ -101,6 +106,13 @@ router.get("/:songId/comments", async (req, res) => {
 router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 	const { title, description, url, imageUrl, albumId } = req.body;
 	const { user } = req;
+	const currentAlbum = await Album.findByPk(albumId);
+	//check to see if album exists
+	if (!currentAlbum) {
+		return res
+			.status(404)
+			.json({ message: "Album couldn't be found", statusCode: 404 });
+	}
 	const newSong = await Song.create({
 		userId: user.id,
 		title,
@@ -109,6 +121,7 @@ router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 		previewImage: imageUrl,
 		albumId,
 	});
+
 	res.json(newSong);
 });
 
