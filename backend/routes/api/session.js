@@ -9,14 +9,17 @@ const router = express.Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
-//middleware to check login
+//middleware to check login -will move
 const validateLogin = [
 	check("credential")
 		.exists({ checkFalsy: true })
+		.withMessage("Email or username is required.")
 		.notEmpty()
 		.withMessage("Email or username is required."),
 	check("password")
 		.exists({ checkFalsy: true })
+		.withMessage("Please provide a password.")
+		.notEmpty()
 		.withMessage("Please provide a password."),
 	handleValidationErrors,
 ];
@@ -36,8 +39,7 @@ router.post("/", validateLogin, async (req, res, next) => {
 	const user = await User.login({ credential, password });
 
 	if (!user) {
-		res.statusCode = 401;
-		res.json({
+		res.status(401).json({
 			message: "Invalid credentials",
 			statusCode: res.statusCode,
 		});
@@ -45,13 +47,15 @@ router.post("/", validateLogin, async (req, res, next) => {
 	}
 
 	let token = await setTokenCookie(res, user);
+	let userToken = token.split(".")[0];
 
+	console.log(token);
 	const payload = {
 		id: user.id,
 		firstName: user.firstName,
 		lastName: user.email,
 		username: user.username,
-		token,
+		token: userToken,
 	};
 
 	return res.json(payload);

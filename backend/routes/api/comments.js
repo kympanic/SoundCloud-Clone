@@ -10,7 +10,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 //edit a comment
-//requires validation
+
 router.put(
 	"/:commentId",
 	requireAuth,

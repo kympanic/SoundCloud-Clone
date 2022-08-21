@@ -7,8 +7,9 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const { environment } = require("./config");
 const isProduction = environment === "production";
-const { ValidationError } = require("sequelize");
+const { ValidationError, ValidationErrorItem } = require("sequelize");
 const routes = require("./routes");
+const { restart } = require("nodemon");
 
 const app = express();
 
@@ -52,22 +53,41 @@ app.use((req, res, next) => {
 });
 
 // Process sequelize errors
+
 app.use((err, req, res, next) => {
-	// check if error is a Sequelize error:
 	if (err instanceof ValidationError) {
-		err.errors = err.errors.map((e) => e.message);
-		err.title = "Validation error";
+		const errors = new Object();
+		err.errors.forEach((err) => {
+			errors[err.path] = err.message;
+		});
+
+		err.status = 403;
+		err.errors = errors;
+		err.title = "Sequelize Errors";
 	}
 	next(err);
 });
 
-// Error formatter
-app.use((err, req, res, _next) => {
+//check email and user if it exists
+app.use((err, req, res, next) => {
+	err.status = 403;
+	err.message = "User already exists";
+	if (err.errors.email) {
+		err.errors.email = "User with that email already exists";
+	}
+	if (err.errors.username) {
+		err.errors.username = "User with that username already exists";
+	}
+	next(err);
+});
+
+//error formatter
+app.use((err, req, res, next) => {
 	res.status(err.status || 500);
-	console.error(err);
+
 	res.json({
-		title: err.title || "Server Error",
 		message: err.message,
+		statusCode: err.status,
 		errors: err.errors,
 	});
 });

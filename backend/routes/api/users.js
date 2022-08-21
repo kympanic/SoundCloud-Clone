@@ -4,7 +4,7 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { User, Song, Album } = require("../../db/models");
+const { User } = require("../../db/models");
 const router = express.Router();
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
@@ -13,6 +13,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const validateSignup = [
 	check("email")
 		.exists({ checkFalsy: true })
+		.withMessage("Invalid email")
 		.isEmail()
 		.withMessage("Invalid email"),
 	check("username")
@@ -29,13 +30,13 @@ const validateSignup = [
 	check("lastName")
 		.exists({ checkFalsy: true })
 		.withMessage("Last Name is required"),
-
 	handleValidationErrors,
 ];
 
 // Sign up
 router.post("/", validateSignup, async (req, res) => {
 	const { firstName, lastName, username, email, password } = req.body;
+	//create the user
 	const user = await User.signup({
 		firstName,
 		lastName,
@@ -45,8 +46,19 @@ router.post("/", validateSignup, async (req, res) => {
 	});
 
 	let token = await setTokenCookie(res, user);
+	let userToken = token.split(".")[0];
 
-	return res.json(user, token);
+	//building up the successful response
+	const payload = {
+		id: user.id,
+		firstName: user.firstName,
+		lastName: user.lastName,
+		username: user.username,
+		email: user.email,
+		token: userToken,
+	};
+
+	return res.json(payload);
 });
 
 module.exports = router;
