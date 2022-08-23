@@ -1,14 +1,15 @@
 const express = require("express");
+const { Op } = require("sequelize");
 const {
 	setTokenCookie,
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { check } = require("express-validator");
+const { check, query } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-
 const db = require("../../db/models");
-const user = require("../../db/models/user");
+// const user = require("../../db/models/user");
+// const song = require("../../db/models/song");
 const { User, Song, Album, Comment } = db;
 
 const router = express.Router();
@@ -28,12 +29,46 @@ const validateSong = [
 	handleValidationErrors,
 ];
 
+const validateQuery = [
+	query("createdAt").optional().isString().withMessage("CreatedAt is invalid"),
+	query("page")
+		.optional()
+		.isInt()
+		.withMessage("Page must be set to a number")
+		.isInt({ min: 0 })
+		.withMessage("Page must be greater than or equal to 0")
+		.isInt({ max: 20 })
+		.withMessage("Page can not be greater than 20"),
+	query("size")
+		.optional()
+		.isInt()
+		.withMessage("Page must be set to a number")
+		.isInt({ min: 0 })
+		.withMessage("Size must be greater than or equal to 0")
+		.isInt({ max: 20 })
+		.withMessage("Size can not be greater than 20"),
+	handleValidationErrors,
+];
+
 //get all songs
-router.get("/", restoreUser, async (req, res) => {
-	let Songs = await Song.findAll({
-		order: [["id"]],
-	});
-	res.json({ Songs });
+router.get("/", restoreUser, validateQuery, async (req, res) => {
+	let query = {
+		where: {},
+	};
+
+	const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
+	const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
+
+	if (page >= 1 && size >= 1) {
+		query.limit = size;
+		query.offset = size * (page - 1);
+	}
+
+	if (req.query.title) query.where.title = req.query.title;
+	if (req.query.createdAt) query.where.createdAt = req.query.createdAt;
+
+	let Songs = await Song.findAll(query);
+	res.json(Songs);
 });
 
 // Get details of a Song from an id
