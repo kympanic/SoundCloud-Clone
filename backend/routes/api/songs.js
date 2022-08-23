@@ -31,7 +31,7 @@ const validateSong = [
 //get all songs
 router.get("/", restoreUser, async (req, res) => {
 	let Songs = await Song.findAll({
-		order: [["title"]],
+		order: [["id"]],
 	});
 	res.json({ Songs });
 });
@@ -99,34 +99,50 @@ router.get("/:songId/comments", async (req, res) => {
 	});
 	//checks to see if there are any comments
 	if (!Comments[0]) {
-		res.json({
+		res.status(404).json({
 			message: "There are no comments",
+			statusCode: 404,
 		});
 	}
 	res.json({ Comments });
 });
 
-//error handling not current working for album
+//create a song
+
 router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 	const { title, description, url, imageUrl, albumId } = req.body;
 	const { user } = req;
 	const currentAlbum = await Album.findByPk(albumId);
 	//check to see if album exists
-	if (!currentAlbum) {
-		return res
-			.status(404)
-			.json({ message: "Album couldn't be found", statusCode: 404 });
+	if (albumId === null) {
+		const newSong = await Song.create({
+			userId: user.id,
+			title,
+			description,
+			url,
+			previewImage: imageUrl,
+			albumId,
+		});
+		res.status(201).json(newSong);
 	}
-	const newSong = await Song.create({
-		userId: user.id,
-		title,
-		description,
-		url,
-		previewImage: imageUrl,
-		albumId,
-	});
-
-	res.status(201).json(newSong);
+	if (albumId) {
+		if (!currentAlbum) {
+			return res
+				.status(404)
+				.json({ message: "Album couldn't be found", statusCode: 404 });
+		}
+		const newSong = await Song.create({
+			userId: user.id,
+			albumId,
+			title,
+			description,
+			url,
+			createdAt: Song.createdAt,
+			updatedAt: Song.updatedAt,
+			previewImage: imageUrl,
+		});
+		res.status(201).json(newSong);
+	}
 });
 
 // Create a Comment for a Song based on the Song's id

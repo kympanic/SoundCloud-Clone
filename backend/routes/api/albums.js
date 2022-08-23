@@ -86,7 +86,7 @@ router.post("/", requireAuth, restoreUser, validateAlbum, async (req, res) => {
 	//get the album with all the attributes
 	const getAlbum = await Album.findByPk(newAlbum.id);
 
-	res.json(getAlbum);
+	res.status(201).json(getAlbum);
 });
 
 //edit an album
@@ -100,8 +100,13 @@ router.put(
 		const { user } = req;
 		const { title, description, imageUrl } = req.body;
 		const editedAlbum = await Album.findByPk(albumId);
-
-		//check if proper user is editing the song
+		if (!editedAlbum) {
+			return res.status(404).json({
+				message: "Album couldn't be found",
+				statusCode: 404,
+			});
+		}
+		//check if proper user is editing the album
 		if (editedAlbum.userId !== user.id) {
 			res.statusCode = 403;
 			return res.json({

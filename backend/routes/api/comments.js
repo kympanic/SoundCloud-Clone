@@ -10,7 +10,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 //edit a comment
-
+//error msg for if comment isnt found
 router.put(
 	"/:commentId",
 	requireAuth,
@@ -26,7 +26,12 @@ router.put(
 		const { user } = req;
 		const { body } = req.body;
 		const editedComment = await Comment.findByPk(commentId);
-
+		if (!editedComment) {
+			return res.status(404).json({
+				message: "Comment couldn't be found",
+				statusCode: 404,
+			});
+		}
 		//check if proper user is editing the song
 		if (editedComment.userId !== user.id) {
 			res.statusCode = 403;

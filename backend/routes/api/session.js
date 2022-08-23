@@ -13,14 +13,14 @@ const { handleValidationErrors } = require("../../utils/validation");
 const validateLogin = [
 	check("credential")
 		.exists({ checkFalsy: true })
-		.withMessage("Email or username is required.")
+		.withMessage("Email or username is required")
 		.notEmpty()
-		.withMessage("Email or username is required."),
+		.withMessage("Email or username is required"),
 	check("password")
 		.exists({ checkFalsy: true })
-		.withMessage("Please provide a password.")
+		.withMessage("Password is required")
 		.notEmpty()
-		.withMessage("Please provide a password."),
+		.withMessage("Password is required"),
 	handleValidationErrors,
 ];
 
@@ -53,7 +53,8 @@ router.post("/", validateLogin, async (req, res, next) => {
 	const payload = {
 		id: user.id,
 		firstName: user.firstName,
-		lastName: user.email,
+		lastName: user.lastName,
+		email: user.email,
 		username: user.username,
 		token: userToken,
 	};

@@ -18,6 +18,7 @@ router.get("/songs", requireAuth, restoreUser, async (req, res) => {
 			userId: user.id,
 		},
 	});
+
 	res.json({ Songs });
 });
 

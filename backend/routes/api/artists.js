@@ -41,8 +41,8 @@ router.get("/:artistId", async (req, res) => {
 	};
 	res.json(payload);
 });
-//Get all Songs of an Artist from an id
 
+//Get all Songs of an Artist from an id
 router.get("/:artistId/songs", async (req, res) => {
 	const { artistId } = req.params;
 	const Songs = await Song.findAll({
@@ -52,8 +52,9 @@ router.get("/:artistId/songs", async (req, res) => {
 	});
 	const currentUser = await User.findByPk(artistId);
 	if (!currentUser) {
-		res.statusCode = 404;
-		res.json({ message: "Artist couldn't be found", statusCode: 404 });
+		res
+			.status(404)
+			.json({ message: "Artist couldn't be found", statusCode: 404 });
 	}
 	res.json({ Songs });
 });

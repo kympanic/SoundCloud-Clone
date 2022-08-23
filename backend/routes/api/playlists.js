@@ -48,6 +48,7 @@ router.get("/:playlistId", async (req, res) => {
 });
 
 // Edit a Playlist
+//playlist not found not working
 router.put(
 	"/:playlistId",
 	requireAuth,
@@ -58,6 +59,13 @@ router.put(
 		const { user } = req;
 		const { name, imageUrl } = req.body;
 		const editedPlaylist = await Playlist.findByPk(playlistId);
+
+		if (!editedPlaylist) {
+			return res.status(404).json({
+				message: "Playlist couldn't be found",
+				statusCode: 404,
+			});
+		}
 		//check if proper user is editing the song
 		if (editedPlaylist.userId !== user.id) {
 			res.statusCode = 403;
@@ -72,11 +80,12 @@ router.put(
 		}
 		await editedPlaylist.save();
 		res.json(editedPlaylist);
-		res.statusCode = 404;
-		res.json({
-			message: "Playlist couldn't be found",
-			statusCode: 404,
-		});
+		if (!editedPlaylist) {
+			res.status(404).json({
+				message: "Playlist couldn't be found",
+				statusCode: 404,
+			});
+		}
 	}
 );
 
@@ -92,6 +101,8 @@ router.post(
 		const newPlaylist = await Playlist.create({
 			userId: user.id,
 			name,
+			createdAt: Playlist.createdAt,
+			updatedAt: Playlist.updatedAt,
 			previewImage: imageUrl,
 		});
 		res.status(201).json(newPlaylist);
@@ -99,7 +110,6 @@ router.post(
 );
 
 //Add a Song to a Playlist based on the Playlists's id
-//requires work
 router.post(
 	"/:playlistId/songs",
 	requireAuth,
@@ -109,16 +119,21 @@ router.post(
 		const { songId } = req.body;
 		const { user } = req;
 		const currentPlaylist = await Playlist.findByPk(playlistId);
+		const currentSong = await Song.findByPk(songId);
+		if (!currentSong) {
+			res.status(404).json({
+				message: "Song couldn't be found",
+				statusCode: res.statusCode,
+			});
+		}
 		if (!currentPlaylist) {
-			res.statusCode = 404;
-			return res.json({
+			res.status(404).json({
 				message: "Playlist couldn't be found",
 				statusCode: 404,
 			});
 		}
 		if (currentPlaylist.userId !== user.id) {
-			res.statusCode = 403;
-			return res.json({
+			res.status(404).json({
 				message: "Forbidden",
 				statusCode: res.statusCode,
 			});
