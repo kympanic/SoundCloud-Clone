@@ -6,23 +6,7 @@ const {
 } = require("../../utils/auth");
 const { User } = require("../../db/models");
 const router = express.Router();
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-
-//middleware to check login -will move
-const validateLogin = [
-	check("credential")
-		.exists({ checkFalsy: true })
-		.withMessage("Email or username is required")
-		.notEmpty()
-		.withMessage("Email or username is required"),
-	check("password")
-		.exists({ checkFalsy: true })
-		.withMessage("Password is required")
-		.notEmpty()
-		.withMessage("Password is required"),
-	handleValidationErrors,
-];
+const { validateLogin } = require("../../middleware/validationCheck");
 
 // Get a session user
 router.get("/", requireAuth, restoreUser, async (req, res) => {

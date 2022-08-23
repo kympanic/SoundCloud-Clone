@@ -4,27 +4,10 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
+
+const { validateAlbum } = require("../../middleware/validationCheck");
 const { Album } = require("../../db/models");
 const router = express.Router();
-
-//validate middlewares - will move in the future
-
-const validateAlbum = [
-	check("title")
-		.exists({ checkFalsy: true })
-		.withMessage("Album title is required")
-		.notEmpty()
-		.withMessage("Album title is required"),
-	check("description")
-		.exists({ checkFalsy: true })
-		.withMessage("Description is required")
-		.notEmpty()
-		.withMessage("Description is required"),
-
-	handleValidationErrors,
-];
 
 //get all albums
 

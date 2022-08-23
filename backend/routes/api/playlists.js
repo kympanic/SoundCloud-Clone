@@ -4,21 +4,11 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
+const { validatePlaylist } = require("../../middleware/validationCheck");
 const { Album, Playlist, Song, PlaylistSong } = require("../../db/models");
 const router = express.Router();
 
 //validate middlewares - will move in the future
-
-const validatePlaylist = [
-	check("name")
-		.exists({ checkFalsy: true })
-		.withMessage("Playlist name is required")
-		.notEmpty()
-		.withMessage("Playlist name is required"),
-	handleValidationErrors,
-];
 
 //Get details of a Playlist from an id
 router.get("/:playlistId", async (req, res) => {

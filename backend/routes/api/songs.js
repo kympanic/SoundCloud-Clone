@@ -5,50 +5,17 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { check, query } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
+const {
+	validateSong,
+	validateQuery,
+	validateComments,
+} = require("../../middleware/validationCheck");
 const db = require("../../db/models");
 // const user = require("../../db/models/user");
 // const song = require("../../db/models/song");
 const { User, Song, Album, Comment } = db;
 
 const router = express.Router();
-
-//validate middlewares - will move in the future
-const validateSong = [
-	check("title")
-		.exists({ checkFalsy: true })
-		.withMessage("Song title is required")
-		.notEmpty()
-		.withMessage("Song title is required"),
-	check("url")
-		.exists({ checkFalsy: true })
-		.withMessage("Audio is required")
-		.notEmpty()
-		.withMessage("Audio is required"),
-	handleValidationErrors,
-];
-
-const validateQuery = [
-	query("createdAt").optional().isString().withMessage("CreatedAt is invalid"),
-	query("page")
-		.optional()
-		.isInt()
-		.withMessage("Page must be set to a number")
-		.isInt({ min: 0 })
-		.withMessage("Page must be greater than or equal to 0")
-		.isInt({ max: 20 })
-		.withMessage("Page can not be greater than 20"),
-	query("size")
-		.optional()
-		.isInt()
-		.withMessage("Page must be set to a number")
-		.isInt({ min: 0 })
-		.withMessage("Size must be greater than or equal to 0")
-		.isInt({ max: 20 })
-		.withMessage("Size can not be greater than 20"),
-	handleValidationErrors,
-];
 
 //get all songs
 router.get("/", restoreUser, validateQuery, async (req, res) => {
@@ -185,12 +152,7 @@ router.post(
 	"/:songId/comments",
 	requireAuth,
 	restoreUser,
-	check("body")
-		.exists({ checkFalsy: true })
-		.withMessage("Comment body text is required")
-		.notEmpty()
-		.withMessage("Comment body text is required"),
-	handleValidationErrors,
+	validateComments,
 	async (req, res) => {
 		const { user } = req;
 		const { songId } = req.params;

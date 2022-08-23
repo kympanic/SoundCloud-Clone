@@ -1,14 +1,7 @@
 const express = require("express");
-const {
-	setTokenCookie,
-	requireAuth,
-	restoreUser,
-} = require("../../utils/auth");
 const { User, Song, Album, Playlist } = require("../../db/models");
 const router = express.Router();
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const user = require("../../db/models/user");
+// const user = require("../../db/models/user");
 
 // Get details of an Artist from an id
 router.get("/:artistId", async (req, res) => {

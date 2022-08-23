@@ -4,10 +4,9 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { User, Song, Album, Comment, Playlist } = require("../../db/models");
+const { Comment } = require("../../db/models");
 const router = express.Router();
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
+const { validateComments } = require("../../middleware/validationCheck");
 
 //edit a comment
 //error msg for if comment isnt found
@@ -15,12 +14,7 @@ router.put(
 	"/:commentId",
 	requireAuth,
 	restoreUser,
-	check("body")
-		.exists({ checkFalsy: true })
-		.withMessage("Comment body text is required")
-		.notEmpty()
-		.withMessage("Comment body text is required"),
-	handleValidationErrors,
+	validateComments,
 	async (req, res) => {
 		const { commentId } = req.params;
 		const { user } = req;

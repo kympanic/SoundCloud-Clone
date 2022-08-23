@@ -4,10 +4,8 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { User, Song, Album, Playlist } = require("../../db/models");
+const { Song, Album, Playlist } = require("../../db/models");
 const router = express.Router();
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
 
 // get all songs from created by the current user
 

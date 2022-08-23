@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const { ValidationError } = require("sequelize");
 
 // middleware for formatting errors from express-validator middleware
 const handleValidationErrors = (req, res, next) => {
@@ -27,6 +28,18 @@ const handleValidationErrors = (req, res, next) => {
 	}
 	next();
 };
+
+// const checkUserEmail = async (err, req, res, next) => {
+// 	err.message = "User already exists";
+// 	err.status = 403;
+// 	if (err.errors.email) {
+// 		err.errors.email = "User with that email already exists";
+// 	}
+// 	if (err.errors.username) {
+// 		err.errors.username = "User with that username already exists";
+// 	}
+// 	next(err);
+// };
 
 module.exports = {
 	handleValidationErrors,
