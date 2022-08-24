@@ -2,9 +2,6 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
 	class PlaylistSong extends Model {
-		// static getSongsByPlaylistId(id) {
-		// 	return PlaylistSong.scope("noPlaylistSongs").findByPk(id);
-		// }
 		static associate(models) {
 			// define association here
 		}
@@ -17,11 +14,6 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: "PlaylistSong",
-			// scopes: {
-			// 	noPlaylistSongs: {
-			// 		attributes: { exclude: ["songId"] },
-			// 	},
-			// },
 		}
 	);
 	return PlaylistSong;

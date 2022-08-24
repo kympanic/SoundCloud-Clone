@@ -129,7 +129,7 @@ router.post(
 			});
 		}
 
-		const addSong = await currentPlaylist.addSong(songId);
+		await currentPlaylist.addSong(songId);
 
 		const payload = {
 			id: user.id,
