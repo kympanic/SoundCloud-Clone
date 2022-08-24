@@ -69,17 +69,17 @@ app.use((err, req, res, next) => {
 });
 
 //check email and user if it exists
-app.use((err, req, res, next) => {
-	err.status = 403;
-	err.message = "User already exists";
-	if (err.errors.email) {
-		err.errors.email = "User with that email already exists";
-	}
-	if (err.errors.username) {
-		err.errors.username = "User with that username already exists";
-	}
-	next(err);
-});
+// app.use((err, req, res, next) => {
+// 	err.status = 403;
+// 	err.message = "User already exists";
+// 	if (err.errors.email) {
+// 		err.errors.email = "User with that email already exists";
+// 	}
+// 	if (err.errors.username) {
+// 		err.errors.username = "User with that username already exists";
+// 	}
+// 	next(err);
+// });
 
 //error formatter
 app.use((err, req, res, next) => {
