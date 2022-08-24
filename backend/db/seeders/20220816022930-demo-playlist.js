@@ -8,13 +8,13 @@ const demoPlaylist = [
 	},
 	{
 		userId: 2,
-		name: "Current Favorites",
+		name: "Dance Favorites",
 		previewImage:
 			"https://dummyimage.com/600x400/822382/ffffff&text=Playlist+2",
 	},
 	{
 		userId: 3,
-		name: "Current Favorites",
+		name: "Group Favorites",
 		previewImage:
 			"https://dummyimage.com/600x400/3ac9af/ffffff&text=Playlist+3",
 	},

@@ -54,12 +54,12 @@ const demoComment = [
 	{
 		userId: 3,
 		songId: 6,
-		body: "I hate this game",
+		body: "I listen to this everyday",
 	},
 	{
 		userId: 3,
 		songId: 7,
-		body: "I love this game",
+		body: "Can we all agree to disagree?",
 	},
 ];
 
