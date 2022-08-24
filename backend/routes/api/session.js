@@ -31,7 +31,8 @@ router.post("/", validateLogin, async (req, res, next) => {
 	}
 
 	let token = await setTokenCookie(res, user);
-	let userToken = token.split(".")[0];
+
+	let userToken = token.split(".")[2];
 
 	console.log(token);
 	const payload = {
