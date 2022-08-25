@@ -11,7 +11,14 @@ const router = express.Router();
 //Get details of a Playlist from an id
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
-	const currentPlaylist = await Playlist.findByPk(playlistId);
+	const currentPlaylist = await Playlist.findByPk(playlistId, {
+		include: {
+			model: Song,
+			through: {
+				attributes: [],
+			},
+		},
+	});
 
 	if (!currentPlaylist) {
 		res.statusCode = 404;
@@ -20,7 +27,8 @@ router.get("/:playlistId", async (req, res) => {
 			statusCode: 404,
 		});
 	}
-	console.log("TEST", currentPlaylist);
+	return res.json(currentPlaylist);
+	console.log("TEST");
 	const songs = await currentPlaylist.getSongs({
 		// joinTableAttributes: [],
 	});
