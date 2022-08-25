@@ -89,7 +89,8 @@ router.put(
 				statusCode: 404,
 			});
 		}
-		//check if proper user is editing the album
+
+		// check if proper user is editing the album
 		if (editedAlbum.userId !== user.id) {
 			res.statusCode = 403;
 			return res.json({
