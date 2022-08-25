@@ -20,10 +20,11 @@ router.get("/:playlistId", async (req, res) => {
 			statusCode: 404,
 		});
 	}
-
+	console.log("TEST", currentPlaylist);
 	const songs = await currentPlaylist.getSongs({
 		joinTableAttributes: [],
 	});
+	console.log("TEST2", songs);
 
 	const payload = {
 		id: currentPlaylist.id,
