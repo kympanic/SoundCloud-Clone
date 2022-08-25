@@ -14,9 +14,9 @@ router.get("/:playlistId", async (req, res) => {
 	const currentPlaylist = await Playlist.findByPk(playlistId, {
 		include: {
 			model: Song,
-			through: {
-				attributes: [],
-			},
+			// through: {
+			// 	attributes: [],
+			// },
 		},
 	});
 
