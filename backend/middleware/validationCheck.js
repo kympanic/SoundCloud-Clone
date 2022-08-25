@@ -1,5 +1,9 @@
-const { handleValidationErrors } = require("../utils/validation");
+const {
+	handleValidationErrors,
+	checkUserEmail,
+} = require("../utils/validation");
 const { check, query } = require("express-validator");
+const { User } = require("../db/models");
 
 const validateAlbum = [
 	check("title")
@@ -105,6 +109,24 @@ const validateComments = [
 	handleValidationErrors,
 ];
 
+const validateUserEmail = [
+	check("email").custom((value) => {
+		return User.findOne({ where: { email: value } }).then((user) => {
+			if (user) {
+				return Promise.reject("User with that email already exists");
+			}
+		});
+	}),
+	check("username").custom((value) => {
+		return User.findOne({ where: { username: value } }).then((user) => {
+			if (user) {
+				return Promise.reject("User with that username already exists");
+			}
+		});
+	}),
+	checkUserEmail,
+];
+
 module.exports = {
 	validateAlbum,
 	validateLogin,
@@ -113,4 +135,5 @@ module.exports = {
 	validateSignup,
 	validateSong,
 	validateComments,
+	validateUserEmail,
 };

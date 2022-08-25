@@ -6,10 +6,13 @@ const {
 } = require("../../utils/auth");
 const { User } = require("../../db/models");
 const router = express.Router();
-const { validateSignup } = require("../../middleware/validationCheck");
+const {
+	validateSignup,
+	validateUserEmail,
+} = require("../../middleware/validationCheck");
 
 // Sign up
-router.post("/", validateSignup, async (req, res) => {
+router.post("/", validateSignup, validateUserEmail, async (req, res) => {
 	const { firstName, lastName, username, email, password } = req.body;
 	//create the user
 	const user = await User.signup({

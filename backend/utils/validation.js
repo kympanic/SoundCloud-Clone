@@ -29,18 +29,34 @@ const handleValidationErrors = (req, res, next) => {
 	next();
 };
 
-// const checkUserEmail = async (err, req, res, next) => {
-// 	err.message = "User already exists";
-// 	err.status = 403;
-// 	if (err.errors.email) {
-// 		err.errors.email = "User with that email already exists";
-// 	}
-// 	if (err.errors.username) {
-// 		err.errors.username = "User with that username already exists";
-// 	}
-// 	next(err);
-// };
+const checkUserEmail = (req, res, next) => {
+	const validationErrors = validationResult(req);
+
+	if (!validationErrors.isEmpty()) {
+		const errors = new Object();
+		validationErrors.array().forEach((errObj) => {
+			let errorKey = errObj.param;
+			if (!errors[errorKey]) {
+				errors[errorKey] = errObj.msg;
+			}
+		});
+
+		const err = Error("Bad request.");
+		err.message = "User already exists";
+		err.errors = errors;
+		res.statusCode = 403;
+
+		res.json({
+			message: err.message,
+			statusCode: res.statusCode,
+			errors,
+		});
+		next(err);
+	}
+	next();
+};
 
 module.exports = {
 	handleValidationErrors,
+	checkUserEmail,
 };
