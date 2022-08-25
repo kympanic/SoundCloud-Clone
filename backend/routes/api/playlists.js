@@ -5,26 +5,33 @@ const {
 	restoreUser,
 } = require("../../utils/auth");
 const { validatePlaylist } = require("../../middleware/validationCheck");
-const { Album, Playlist, Song, PlaylistSong } = require("../../db/models");
+const {
+	Album,
+	Playlist,
+	Song,
+	PlaylistSong,
+	User,
+} = require("../../db/models");
+const user = require("../../db/models/user");
 const router = express.Router();
 
 //Get details of a Playlist from an id
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
 	// const currentPlaylist = await Playlist.findByPk(playlistId, {
-	// 	// include: {
-	// 	// 	model: Song,
-	// 	// 	through: {
-	// 	// 		attributes: [],
-	// 	// 	},
-	// 	// },
+	// 	include: {
+	// 		model: Song,
+	// 		through: {
+	// 			attributes: [],
+	// 		},
+	// 	},
 	// });
+	// return res.json(currentPlaylist);
 	const currentPlaylist = await Playlist.findOne({
 		where: {
 			id: playlistId,
 		},
 	});
-
 	if (!currentPlaylist) {
 		res.statusCode = 404;
 		res.json({
@@ -32,7 +39,30 @@ router.get("/:playlistId", async (req, res) => {
 			statusCode: 404,
 		});
 	}
-	return res.json(currentPlaylist);
+	let currentPlaylistSong = await PlaylistSong.findOne({
+		where: {
+			playlistId: currentPlaylist.id,
+		},
+	});
+	if (!currentPlaylistSong) {
+		res.json({
+			id: currentPlaylist.id,
+			userId: currentPlaylist.userId,
+			name: currentPlaylist.name,
+			createdAt: currentPlaylist.createdAt,
+			updatedAt: currentPlaylist.updatedAt,
+			previewImage: currentPlaylist.previewImage,
+			Songs: [],
+		});
+	}
+	let currentSongs = await Song.findAll({
+		where: {
+			id: currentPlaylistSong.songId,
+		},
+	});
+	if (!currentSongs) {
+		currentSongs = [];
+	}
 
 	// const songs = await currentPlaylist.getSongs({
 	// 	joinTableAttributes: [],
@@ -45,7 +75,7 @@ router.get("/:playlistId", async (req, res) => {
 		createdAt: currentPlaylist.createdAt,
 		updatedAt: currentPlaylist.updatedAt,
 		previewImage: currentPlaylist.previewImage,
-		Songs: songs,
+		Songs: currentSongs,
 	};
 	res.json(payload);
 });
