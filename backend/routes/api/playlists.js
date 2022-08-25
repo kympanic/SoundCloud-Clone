@@ -13,12 +13,7 @@ const router = express.Router();
 //Get details of a Playlist from an id
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
-	const currentPlaylist = await Playlist.findByPk(playlistId, {
-		include: {
-			model: Song,
-		},
-		joinTableAttributes: [],
-	});
+	const currentPlaylist = await Playlist.findByPk(playlistId);
 
 	if (!currentPlaylist) {
 		res.statusCode = 404;
@@ -28,18 +23,18 @@ router.get("/:playlistId", async (req, res) => {
 		});
 	}
 
-	// const songs = await currentPlaylist.getSongs({ joinTableAttributes: [] });
+	const songs = await currentPlaylist.getSongs({ joinTableAttributes: [] });
 
-	// const payload = {
-	// 	id: currentPlaylist.id,
-	// 	userId: currentPlaylist.userId,
-	// 	name: currentPlaylist.name,
-	// 	createdAt: currentPlaylist.createdAt,
-	// 	updatedAt: currentPlaylist.updatedAt,
-	// 	previewImage: currentPlaylist.previewImage,
-	// 	// Songs: songs,
-	// };
-	res.json(currentPlaylist);
+	const payload = {
+		id: currentPlaylist.id,
+		userId: currentPlaylist.userId,
+		name: currentPlaylist.name,
+		createdAt: currentPlaylist.createdAt,
+		updatedAt: currentPlaylist.updatedAt,
+		previewImage: currentPlaylist.previewImage,
+		Songs: songs,
+	};
+	res.json(payload);
 });
 
 // Edit a Playlist
