@@ -28,11 +28,10 @@ router.get("/:playlistId", async (req, res) => {
 		});
 	}
 	return res.json(currentPlaylist);
-	console.log("TEST");
+
 	const songs = await currentPlaylist.getSongs({
-		// joinTableAttributes: [],
+		joinTableAttributes: [],
 	});
-	console.log("TEST2", songs);
 
 	const payload = {
 		id: currentPlaylist.id,
@@ -139,7 +138,12 @@ router.post(
 			});
 		}
 
-		await currentPlaylist.addSong(songId);
+		// await currentPlaylist.addSong(songId);
+		//fix
+		await PlaylistSong.create({
+			songId: currentSong.id,
+			playlistId: currentPlaylist.id,
+		});
 
 		const payload = {
 			id: user.id,
