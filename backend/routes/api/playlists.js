@@ -18,21 +18,14 @@ const router = express.Router();
 //Get details of a Playlist from an id
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
-	// const currentPlaylist = await Playlist.findByPk(playlistId, {
-	// 	include: {
-	// 		model: Song,
-	// 		through: {
-	// 			attributes: [],
-	// 		},
-	// 	},
-	// });
-	// return res.json(currentPlaylist);
-	const currentPlaylist = await Playlist.findOne({
-		where: {
-			id: playlistId,
+	const currentPlaylist = await Playlist.findByPk(playlistId, {
+		include: {
+			model: Song,
+			through: {
+				attributes: [],
+			},
 		},
 	});
-
 	if (!currentPlaylist) {
 		res.statusCode = 404;
 		res.json({
@@ -40,41 +33,11 @@ router.get("/:playlistId", async (req, res) => {
 			statusCode: 404,
 		});
 	}
-
-	let currentPlaylistSong = await PlaylistSong.findOne({
-		where: {
-			playlistId: currentPlaylist.id,
-		},
-	});
-
-	if (!currentPlaylistSong) {
-		res.json(currentPlaylist);
-	}
-
-	let currentSongs = await Song.findAll({
-		where: {
-			id: currentPlaylistSong.songId,
-		},
-	});
-
-	if (!currentSongs) {
-		currentSongs = [];
-	}
+	return res.json(currentPlaylist);
 
 	// const songs = await currentPlaylist.getSongs({
 	// 	joinTableAttributes: [],
 	// });
-
-	const payload = {
-		id: currentPlaylist.id,
-		userId: currentPlaylist.userId,
-		name: currentPlaylist.name,
-		createdAt: currentPlaylist.createdAt,
-		updatedAt: currentPlaylist.updatedAt,
-		previewImage: currentPlaylist.previewImage,
-		Songs: currentSongs,
-	};
-	res.json(payload);
 });
 
 // Edit a Playlist
