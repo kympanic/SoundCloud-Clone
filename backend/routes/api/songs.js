@@ -11,8 +11,6 @@ const {
 	validateComments,
 } = require("../../middleware/validationCheck");
 const db = require("../../db/models");
-// const user = require("../../db/models/user");
-// const song = require("../../db/models/song");
 const { User, Song, Album, Comment } = db;
 
 const router = express.Router();

@@ -93,7 +93,7 @@ const validateQuery = [
 	query("size")
 		.optional()
 		.isInt()
-		.withMessage("Page must be set to a number")
+		.withMessage("Size must be set to a number")
 		.isInt({ min: 0 })
 		.withMessage("Size must be greater than or equal to 0")
 		.isInt({ max: 20 })

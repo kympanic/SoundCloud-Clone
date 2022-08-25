@@ -8,8 +8,6 @@ const { validatePlaylist } = require("../../middleware/validationCheck");
 const { Album, Playlist, Song, PlaylistSong } = require("../../db/models");
 const router = express.Router();
 
-//validate middlewares - will move in the future
-
 //Get details of a Playlist from an id
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
@@ -23,7 +21,9 @@ router.get("/:playlistId", async (req, res) => {
 		});
 	}
 
-	const songs = await currentPlaylist.getSongs({ joinTableAttributes: [] });
+	const songs = await currentPlaylist.getSongs({
+		joinTableAttributes: [],
+	});
 
 	const payload = {
 		id: currentPlaylist.id,
@@ -38,7 +38,7 @@ router.get("/:playlistId", async (req, res) => {
 });
 
 // Edit a Playlist
-//playlist not found not working
+
 router.put(
 	"/:playlistId",
 	requireAuth,
@@ -69,6 +69,7 @@ router.put(
 			editedPlaylist.previewImage = imageUrl;
 		}
 		await editedPlaylist.save();
+
 		res.json(editedPlaylist);
 		if (!editedPlaylist) {
 			res.status(404).json({
