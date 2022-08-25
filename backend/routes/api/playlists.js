@@ -22,7 +22,7 @@ router.get("/:playlistId", async (req, res) => {
 	}
 	console.log("TEST", currentPlaylist);
 	const songs = await currentPlaylist.getSongs({
-		joinTableAttributes: [],
+		// joinTableAttributes: [],
 	});
 	console.log("TEST2", songs);
 
