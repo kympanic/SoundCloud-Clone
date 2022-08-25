@@ -11,12 +11,17 @@ const router = express.Router();
 //Get details of a Playlist from an id
 router.get("/:playlistId", async (req, res) => {
 	const { playlistId } = req.params;
-	const currentPlaylist = await Playlist.findByPk(playlistId, {
-		include: {
-			model: Song,
-			// through: {
-			// 	attributes: [],
-			// },
+	// const currentPlaylist = await Playlist.findByPk(playlistId, {
+	// 	// include: {
+	// 	// 	model: Song,
+	// 	// 	through: {
+	// 	// 		attributes: [],
+	// 	// 	},
+	// 	// },
+	// });
+	const currentPlaylist = await Playlist.findOne({
+		where: {
+			id: playlistId,
 		},
 	});
 
@@ -29,9 +34,9 @@ router.get("/:playlistId", async (req, res) => {
 	}
 	return res.json(currentPlaylist);
 
-	const songs = await currentPlaylist.getSongs({
-		joinTableAttributes: [],
-	});
+	// const songs = await currentPlaylist.getSongs({
+	// 	joinTableAttributes: [],
+	// });
 
 	const payload = {
 		id: currentPlaylist.id,
