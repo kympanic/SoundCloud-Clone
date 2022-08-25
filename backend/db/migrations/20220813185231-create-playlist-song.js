@@ -13,6 +13,7 @@ module.exports = {
 				allowNull: false,
 				references: {
 					model: "Songs",
+					key: "id",
 				},
 				onDelete: "cascade",
 			},
@@ -21,6 +22,7 @@ module.exports = {
 				allowNull: false,
 				references: {
 					model: "Playlists",
+					key: "id",
 				},
 				onDelete: "cascade",
 			},
