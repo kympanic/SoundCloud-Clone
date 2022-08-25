@@ -32,6 +32,7 @@ router.get("/:playlistId", async (req, res) => {
 			id: playlistId,
 		},
 	});
+
 	if (!currentPlaylist) {
 		res.statusCode = 404;
 		res.json({
@@ -39,27 +40,23 @@ router.get("/:playlistId", async (req, res) => {
 			statusCode: 404,
 		});
 	}
+
 	let currentPlaylistSong = await PlaylistSong.findOne({
 		where: {
 			playlistId: currentPlaylist.id,
 		},
 	});
+
 	if (!currentPlaylistSong) {
-		res.json({
-			id: currentPlaylist.id,
-			userId: currentPlaylist.userId,
-			name: currentPlaylist.name,
-			createdAt: currentPlaylist.createdAt,
-			updatedAt: currentPlaylist.updatedAt,
-			previewImage: currentPlaylist.previewImage,
-			Songs: [],
-		});
+		res.json(currentPlaylist);
 	}
+
 	let currentSongs = await Song.findAll({
 		where: {
 			id: currentPlaylistSong.songId,
 		},
 	});
+
 	if (!currentSongs) {
 		currentSongs = [];
 	}
