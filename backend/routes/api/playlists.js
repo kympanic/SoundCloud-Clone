@@ -35,6 +35,7 @@ router.get("/:playlistId", async (req, res) => {
 	}
 	return res.json(currentPlaylist);
 
+	//Another method of getting songs with mix-ins
 	// const songs = await currentPlaylist.getSongs({
 	// 	joinTableAttributes: [],
 	// });

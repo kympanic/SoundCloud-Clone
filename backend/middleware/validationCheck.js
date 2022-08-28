@@ -82,6 +82,7 @@ const validateSignup = [
 
 const validateQuery = [
 	query("createdAt").optional().isString().withMessage("CreatedAt is invalid"),
+
 	query("page")
 		.optional()
 		.isInt()

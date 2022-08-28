@@ -9,7 +9,6 @@ const router = express.Router();
 const { validateComments } = require("../../middleware/validationCheck");
 
 //edit a comment
-//error msg for if comment isnt found
 router.put(
 	"/:commentId",
 	requireAuth,
