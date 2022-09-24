@@ -29,7 +29,7 @@ const demoAlbum = [
 		userId: 2,
 		title: "Persona: Map of the Soul 7",
 		description:
-			"Like many a Bangtan album before it, 'Map Of The Soul: Persona' impressively and cohesively flies from genre to genre, but sounds more confident than ever. It's bookended by two hard-hitting, hip-hop heavy tracks.",
+			"Like many a Bangtan album before it, 'Map Of The Soul: Persona' impressively and cohesively flies from genre to genre, but sounds more confident than ever.",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BTS-MapoftheSoul/Map+of+the+Soul.jpg",
 	},
@@ -37,7 +37,7 @@ const demoAlbum = [
 		userId: 3,
 		title: "MADE",
 		description:
-			"The MADE album has such incredible musical diversity – it's impossible to believe that all these songs came out as part of one album. Literally every track is good enough to be another group's best song – yet BIGBANG owns them all. They truly are the kings of Kpop.",
+			"Literally every track is good enough to be another group's best song – yet BIGBANG owns them all. They truly are the kings of Kpop.",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/made-album.jpeg",
 	},
