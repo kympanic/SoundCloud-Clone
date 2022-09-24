@@ -3,45 +3,51 @@
 const demoAlbum = [
 	{
 		userId: 1,
-		title: "test1 Album",
-		description: "testing the first album",
+		title: "Born Pink",
+		description:
+			"The K-pop quartet’s highly anticipated second album leans into an image of authority that’s undercut by familiar ideas and stale musical concepts.",
 		previewImage:
-			"https://dummyimage.com/600x400/d16e39/fff.png&text=Album+One",
+			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BlackPink-Born+Pink/bornpink-album.jpg",
 	},
 	{
 		userId: 1,
-		title: "test2 Album",
-		description: "testing the second album",
+		title: "Walpurgis Night",
+		description:
+			"For the third time in 2020, GFriend arrived with a demonstration of both versatility and sheer perseverance in the K-Pop industry.",
 		previewImage:
-			"https://dummyimage.com/600x400/3167e6/fff.png&text=Album+Two",
+			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/GFriend+-+Walpurgis+Night/WalpurgisNight.jpg",
 	},
 	{
 		userId: 2,
-		title: "test3 Album",
-		description: "testing the third album",
+		title: "TWICEcoaster Lane 1",
+		description:
+			"TWICEcoaster : LANE 1 is the third effort from the nine-member JYP group and came on the heels of their success with their second mini.",
 		previewImage:
-			"https://dummyimage.com/600x400/e333e6/fff.png&text=Album+Three",
+			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Twice-TwiceCoaster/TWICEcoaster_LANE_1_Cover.jpeg",
 	},
 	{
 		userId: 2,
-		title: "test4 Album",
-		description: "testing the fourth album",
+		title: "Persona: Map of the Soul 7",
+		description:
+			"Like many a Bangtan album before it, 'Map Of The Soul: Persona' impressively and cohesively flies from genre to genre, but sounds more confident than ever. It's bookended by two hard-hitting, hip-hop heavy tracks.",
 		previewImage:
-			"https://dummyimage.com/600x400/348f78/fff.png&text=Album+Four",
+			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BTS-MapoftheSoul/Map+of+the+Soul.jpg",
 	},
 	{
 		userId: 3,
-		title: "test5 Album",
-		description: "testing the fifth album",
+		title: "MADE",
+		description:
+			"The MADE album has such incredible musical diversity – it's impossible to believe that all these songs came out as part of one album. Literally every track is good enough to be another group's best song – yet BIGBANG owns them all. They truly are the kings of Kpop.",
 		previewImage:
-			"https://dummyimage.com/600x400/a297a6/fff.png&text=Album+Five",
+			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/made-album.jpeg",
 	},
 	{
-		userId: 2,
-		title: "test6 Album",
-		description: "testing the fifth album",
+		userId: 3,
+		title: "Girls Generation",
+		description:
+			"The music combats but at the same time compliments the image of class; singing about risqué subjects but still retaining that celestial aesthetic quality",
 		previewImage:
-			"https://dummyimage.com/600x400/30d9b4/fff.png&text=Album+Six",
+			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Girls+Generation-2011/girlsgenerationalbum.jpeg",
 	},
 ];
 module.exports = {
