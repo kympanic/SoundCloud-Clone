@@ -37,7 +37,7 @@ const demoAlbum = [
 		userId: 3,
 		title: "MADE",
 		description:
-			"Literally every track is good enough to be another group's best song – yet BIGBANG owns them all. They truly are the kings of Kpop.",
+			"Literally every track is good enough to be another group's best song yet BIGBANG owns them all. They truly are the kings of Kpop.",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/made-album.jpeg",
 	},
