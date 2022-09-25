@@ -21,7 +21,7 @@ const demoAlbum = [
 		userId: 2,
 		title: "TWICEcoaster Lane 1",
 		description:
-			"TWICEcoaster : LANE 1 is the third effort from the nine-member JYP group and came on the heels of their success with their second mini.",
+			"Third effort from the nine-member JYP group and came on the heels of their success with their second mini.",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Twice-TwiceCoaster/TWICEcoaster_LANE_1_Cover.jpeg",
 	},
@@ -29,7 +29,7 @@ const demoAlbum = [
 		userId: 2,
 		title: "Persona: Map of the Soul 7",
 		description:
-			"Like many a Bangtan album before it, 'Map Of The Soul: Persona' impressively and cohesively flies from genre to genre, but sounds more confident than ever.",
+			"Map Of The Soul: Persona impressively and cohesively flies from genre to genre, but sounds more confident than ever.",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BTS-MapoftheSoul/Map+of+the+Soul.jpg",
 	},
@@ -37,7 +37,7 @@ const demoAlbum = [
 		userId: 3,
 		title: "MADE",
 		description:
-			"Literally every track is good enough to be another group's best song yet BIGBANG owns them all. They truly are the kings of Kpop.",
+			"Literally every track is good enough to be another group's best song",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/made-album.jpeg",
 	},
