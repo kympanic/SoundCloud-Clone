@@ -5,7 +5,7 @@ const demoAlbum = [
 		userId: 1,
 		title: "Born Pink",
 		description:
-			"The K-pop quartet’s highly anticipated second album leans into an image of authority that’s undercut by familiar ideas and stale musical concepts.",
+			"Leans into an image of authority undercut by familiar ideas and stale musical concepts.",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BlackPink-Born+Pink/bornpink-album.jpg",
 	},
