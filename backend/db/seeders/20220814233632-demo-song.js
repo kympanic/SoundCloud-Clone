@@ -94,7 +94,7 @@ const demoSongs = [
 		albumId: 5,
 		title: "Bang Bang Bang",
 		description:
-			"Bang Bang Bang has proven to be the project's most iconic moment and — for better or worse — has had deep influence over the post-2015 K-pop landscape.",
+			"Bang Bang Bang has proven to be the project's most iconic moment.",
 		url: "https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/BangBangBang.mp3",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/bangbangbang.png",
@@ -103,8 +103,7 @@ const demoSongs = [
 		userId: 3,
 		albumId: 5,
 		title: "Loser",
-		description:
-			"Loser explores the duality of Big Bang's members, who spend every day smiling for cameras and fans while dealing with real life problems behind the scenes.",
+		description: "Loser explores the duality of Big Bang's members",
 		url: "https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/Loser.mp3",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BigBang-Made/Loser.jpeg",
@@ -124,7 +123,7 @@ const demoSongs = [
 		albumId: 6,
 		title: "Genie",
 		description:
-			"Genie offers a edgier, more hard-hitting production, addictive choreography, and a series of rapid-fire hooks that have held up for over half a decade.",
+			"Genie offers a edgier, more hard-hitting production and addictive choreography",
 		url: "https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Girls+Generation-2011/Genie.mp3",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Girls+Generation-2011/genie.jpeg",
@@ -143,7 +142,7 @@ const demoSongs = [
 		albumId: 6,
 		title: "Run Devil Run",
 		description:
-			"The title track Run Devil Run showcases a new dark, sexy, and fierce image for the girls dubbed the Dark Soshi concept by fans.",
+			"Showcases a new dark, sexy, and fierce image for the girls dubbed the Dark Soshi concept by fans.",
 		url: "https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Girls+Generation-2011/Run+Devil+Run.mp3",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Girls+Generation-2011/rundevilrun.jpeg",
