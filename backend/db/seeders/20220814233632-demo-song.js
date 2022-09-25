@@ -24,7 +24,7 @@ const demoSongs = [
 		albumId: 2,
 		title: "MAGO",
 		description:
-			"The thumping electronics aren’t something we haven’t heard a million times before in pop music, but MAGO doesn’t seek to impress through daring instrumental twists and turns. Instead, it stakes its claim on a good chorus",
+			"MAGO does not seek to impress through daring instrumental twists and turns. Instead, it stakes its claim on a good chorus",
 		url: "https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/GFriend+-+Walpurgis+Night/MAGO.mp3",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/GFriend+-+Walpurgis+Night/Mago.jpeg",
@@ -54,7 +54,7 @@ const demoSongs = [
 		albumId: 3,
 		title: "Pit a Pat",
 		description:
-			"The song flows like the changes that happen to people when they fall in love or see their crush like their face turning red and the change of the eyes whenever they see the person they love.",
+			"The song flows like the changes that happen to people when they fall in love",
 		url: "https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Twice-TwiceCoaster/Pit-a-Pat.mp3",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/Twice-TwiceCoaster/Pit-a-Pat.jpeg",
@@ -84,7 +84,7 @@ const demoSongs = [
 		albumId: 4,
 		title: "Dionysus",
 		description:
-			"Named after the Greek god of wine associated with debauchery and excess, “Dionysus” sounds like a party song, but really focuses on the group’s desire to continue making music on their own terms, with blink-and-you’ll-miss-it meditations on stardom, legacy and artistic integrity.",
+			"Named after the Greek god of wine associated with debauchery and excess",
 		url: "https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BTS-MapoftheSoul/Dionysus.mp3",
 		previewImage:
 			"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/BTS-MapoftheSoul/Dionysus.jpeg",
