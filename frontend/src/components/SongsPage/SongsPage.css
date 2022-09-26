@@ -1,0 +1,77 @@
+.songs-list-full-container {
+	background: #fff;
+	/* padding: 60px 10px 120px; */
+	/* border: 2px red solid; */
+	background-color: rgb(93, 87, 107);
+	font-family: "Montserrat", sans-serif;
+	background-image: url(https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/AllSongsBackground.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.songs-list-full-container h1 {
+	margin-bottom: 200px;
+	text-align: center;
+	padding-top: 50px;
+	color: white;
+	font-size: 70px;
+	/* border: 2px black solid; */
+}
+
+.songs-list-full-container > div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: 1000px;
+
+	background: linear-gradient(
+		90deg,
+		rgba(117, 185, 190, 1) 50%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	border-radius: 5px;
+}
+
+.song-card {
+	width: 294px;
+	margin: 10px 10px 14px 10px;
+	list-style: none;
+	/* border: 2px green solid; */
+	text-align: center;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: transparent;
+	border: grey 1px solid;
+}
+
+.song-card:hover {
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.song-card p {
+	overflow: hidden;
+	white-space: nowrap;
+	/* border: purple solid 2px; */
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+}
+
+.card-img-wrapper {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 250px;
+	margin-bottom: 10px;
+	position: relative;
+	width: 100%;
+	border-radius: 5px;
+}
+.song-link-text {
+	text-decoration: none;
+	color: black;
+	font-size: larger;
+}
