@@ -1,0 +1,39 @@
+nav {
+	background: white;
+	box-shadow: 0 10px 25px rgb(0 0 0 / 30%), 0 20px 48px rgb(0 0 0 / 16%),
+		0 1px 4px rgba(169, 165, 165, 0.12);
+	position: fixed;
+	top: 0%;
+
+	width: 100%;
+	z-index: 10;
+	height: 150px;
+}
+
+nav > div {
+	display: flex;
+	width: 100%;
+	max-width: 1240px;
+	margin: 0 auto;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	justify-content: space-between;
+	border: red solid 2px;
+}
+
+.nav-logo a {
+	background: #ffffff;
+	color: #fff;
+	display: flex;
+	height: 100px;
+}
+
+.nav-left > ul {
+	display: flex;
+	list-style: none;
+	text-decoration: none;
+
+	border: black solid 2px;
+	width: 500px;
+}
