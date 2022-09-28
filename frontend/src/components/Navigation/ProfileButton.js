@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-
+import { useSelector } from "react-redux";
 import LogoutButton from "./LogoutButton";
 
-function ProfileButton({ currentUser }) {
+function ProfileButton() {
 	const [showMenu, setShowMenu] = useState(false);
-
+	const currentUser = useSelector((state) => state.session.user);
 	const openMenu = () => {
 		if (showMenu) return;
 		setShowMenu(true);
@@ -21,8 +21,6 @@ function ProfileButton({ currentUser }) {
 
 		return () => document.removeEventListener("click", closeMenu);
 	}, [showMenu]);
-
-	console.log(currentUser);
 
 	return (
 		<>
