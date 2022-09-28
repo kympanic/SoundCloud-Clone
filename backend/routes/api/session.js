@@ -9,11 +9,13 @@ const router = express.Router();
 const { validateLogin } = require("../../middleware/validationCheck");
 
 // Get a session user
-router.get("/", requireAuth, restoreUser, async (req, res) => {
+router.get("/", restoreUser, (req, res) => {
 	const { user } = req;
-	const currentUser = await User.findByPk(user.id);
-
-	res.json(currentUser);
+	if (user) {
+		return res.json({
+			user: user.toSafeObject(),
+		});
+	} else return res.json({});
 });
 
 // Log User In
