@@ -1,3 +1,8 @@
+// import React from "react";
+// import { NavLink } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import ProfileButton from "./ProfileButton";
+// import "./Navigation.css";
 // const Navigation = ({ isLoaded }) => {
 // 	const currentUser = useSelector((state) => state.session.user);
 // 	console.log(isLoaded);
@@ -55,6 +60,7 @@ import "./Navigation.css";
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector((state) => state.session.user);
 	let sessionLinks;
+	console.log(sessionUser);
 	if (sessionUser) {
 		sessionLinks = <ProfileButton />;
 	} else {
