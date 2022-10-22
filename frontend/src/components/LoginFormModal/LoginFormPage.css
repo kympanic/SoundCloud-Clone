@@ -15,4 +15,13 @@ form .input-container {
 	display: flex;
 	flex-direction: column;
 	font-size: 15px;
+	margin-bottom: 15px;
+}
+
+form .input-container input,
+form .input-container textarea {
+	border: 2px solid black;
+	padding: 6px 5px;
+	border-radius: 5px;
+	outline: none;
 }

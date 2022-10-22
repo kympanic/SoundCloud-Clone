@@ -1,7 +1,5 @@
 .songs-list-full-container {
 	background: #fff;
-	/* padding: 60px 10px 120px; */
-	/* border: 2px red solid; */
 	background-color: rgb(93, 87, 107);
 	font-family: "Montserrat", sans-serif;
 	background-image: url(https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/AllSongsBackground.jpg);
@@ -54,7 +52,7 @@
 .song-card p {
 	overflow: hidden;
 	white-space: nowrap;
-	/* border: purple solid 2px; */
+	border: purple solid 2px;
 	font-size: 20px;
 	color: white;
 	font-weight: bold;

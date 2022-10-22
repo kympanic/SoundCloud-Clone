@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSongs } from "../../store/songs";
 import { Link } from "react-router-dom";
-
 const SongsPage = () => {
 	const dispatch = useDispatch();
 	const allSongs = useSelector((state) => Object.values(state.songs));

@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
 						</li>
 						<li>
 							<NavLink exact to="/songs">
-								All Songs
+								Library
 							</NavLink>
 						</li>
 						<li>

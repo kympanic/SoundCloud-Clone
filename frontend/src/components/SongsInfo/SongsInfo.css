@@ -1,0 +1,43 @@
+.song-full-container {
+	background: #fff;
+	background-color: rgb(93, 87, 107);
+	font-family: "Montserrat", sans-serif;
+	background-image: url(https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/AllSongsBackground.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 100px;
+	height: 100%;
+	cursor: auto;
+}
+
+.song-full-container h1 {
+	text-align: center;
+	padding-top: 50px;
+	color: white;
+	font-size: 30px;
+	border: 2px black solid;
+}
+
+.solosong-card {
+	width: 294px;
+	margin: 10px 10px 14px 10px;
+	list-style: none;
+	/* border: 2px green solid; */
+	text-align: center;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: transparent;
+	border: grey 1px solid;
+}
+
+.song-img-wrapper {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 250px;
+	margin-bottom: 10px;
+	position: relative;
+	width: 100%;
+	border-radius: 5px;
+}

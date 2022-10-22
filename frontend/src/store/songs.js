@@ -1,10 +1,16 @@
 import { csrfFetch } from "./csrf";
 
-export const GET_SONGS = "/songs/getallsongs";
+const GET_SONGS = "/songs/getallsongs";
+const ADD_SONG = "/songs/add_song";
 
-const getSongs = (payload) => ({
+export const getSongs = (payload) => ({
 	type: GET_SONGS,
 	payload,
+});
+
+export const addSong = (song) => ({
+	type: ADD_SONG,
+	song,
 });
 
 export const getAllSongs = () => async (dispatch) => {
@@ -12,19 +18,37 @@ export const getAllSongs = () => async (dispatch) => {
 
 	if (res.ok) {
 		const payload = await res.json();
-		console.log(payload, "thisistheSONGS");
 		dispatch(getSongs(payload));
 	}
 };
 
-let newState = {};
+export const createSong = (song) => async (dispatch) => {
+	const res = await csrfFetch("/api/songs", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(song),
+	});
+	if (res.ok) {
+		const addedSong = await res.json();
+		dispatch(addSong(addedSong));
+		return addedSong;
+	}
+};
+
 const songsReducer = (state = {}, action) => {
+	let newState = {};
 	switch (action.type) {
 		case GET_SONGS:
 			newState = { ...state };
 			action.payload.map((song) => {
 				return (newState[song.id] = song);
 			});
+			return newState;
+		case ADD_SONG:
+			newState = { ...state };
+			newState[action.song.id] = action.song;
 			return newState;
 		default:
 			return state;
