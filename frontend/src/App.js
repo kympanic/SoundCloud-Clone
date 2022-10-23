@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import SongsPage from "./components/SongsPage";
 import SongsInfo from "./components/SongsInfo";
-import ProfilePage from "./components/ProfilePage";
+import ProfilePage from "./components/ProfileSection";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 

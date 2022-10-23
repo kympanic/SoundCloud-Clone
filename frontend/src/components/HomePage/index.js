@@ -1,9 +1,10 @@
 import "./HomePage.css";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import ProfileSection from "../ProfileSection";
 const HomePage = () => {
 	const history = useHistory();
-	const sessionUser = useSelector((state) => state.session.user);
+	const sessionUser = useSelector((state) => state.session?.user);
 	let header;
 
 	const handleClick = (e) => {
@@ -12,7 +13,11 @@ const HomePage = () => {
 	};
 
 	if (sessionUser) {
-		history.push("/profile");
+		header = (
+			<div>
+				<ProfileSection />;
+			</div>
+		);
 	} else {
 		header = (
 			<div className="header-container">
@@ -31,13 +36,15 @@ const HomePage = () => {
 			<div className="homepage-header">{header}</div>
 			<div>
 				<h1>Discover Tracks and Playlists</h1>
+				<h2>New Music Now</h2>
 			</div>
 			<div>
-				<h2>New Music Now</h2>
 				<h2>Songs placeholder</h2>
 			</div>
 			<div>
 				<h2>Hot Playlists</h2>
+			</div>
+			<div>
 				<h2>Playlist placeholder</h2>
 			</div>
 		</div>

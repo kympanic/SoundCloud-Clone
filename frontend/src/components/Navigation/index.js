@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
+import DemoUser from "../DemoUser";
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -17,6 +18,7 @@ function Navigation({ isLoaded }) {
 			<>
 				<LoginFormModal />
 				<SignUpFormModal />
+				<DemoUser />
 			</>
 		);
 	}

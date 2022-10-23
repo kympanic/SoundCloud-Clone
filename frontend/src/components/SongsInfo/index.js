@@ -35,6 +35,8 @@ const SongsInfo = () => {
 				<div className="song-text">
 					<p>{song?.description}</p>
 					<h1>{song?.title}</h1>
+				</div>
+				<div>
 					<button onClick={start}>Play</button>
 					<button onClick={stop}>Stop</button>
 				</div>
