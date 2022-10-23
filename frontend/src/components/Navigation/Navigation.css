@@ -7,17 +7,6 @@ nav {
 	height: 100px;
 }
 
-nav > div {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	max-width: 1240px;
-	margin: 0 auto;
-	align-items: center;
-	justify-content: space-between;
-	border: red solid 2px;
-}
-
 nav ul {
 	justify-content: space-between;
 	align-items: center;
@@ -29,13 +18,14 @@ nav ul {
 .nav-bar {
 	display: flex;
 	width: 100%;
-	height: 100px;
+	height: 70px;
 	border: 2px green solid;
 }
 
 .nav-bar li {
 	display: flex;
-	border: solid teal 2px;
+	font-size: 20px;
+	text-decoration: none;
 }
 
 .nav-logo a {

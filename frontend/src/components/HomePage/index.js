@@ -28,7 +28,7 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<div>{header}</div>
+			<div className="homepage-header">{header}</div>
 			<div>
 				<h1>Discover Tracks and Playlists</h1>
 			</div>

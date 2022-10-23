@@ -23,30 +23,28 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<nav>
-			<div>
-				<div className="nav-bar">
-					<ul>
-						<li className="nav-logo">
-							<NavLink exact to="/">
-								<img
-									src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/%E2%80%94Pngtree%E2%80%94kpop+color+graphic+logo+south_6607272.png"
-									alt="nav-logo"
-								/>
-							</NavLink>
-						</li>
-						<li>
-							<NavLink exact to="/songs">
-								Library
-							</NavLink>
-						</li>
-						<li>
-							<NavLink exact to="/upload">
-								Upload
-							</NavLink>
-						</li>
-						<li>{isLoaded && sessionLinks}</li>
-					</ul>
-				</div>
+			<div className="nav-bar">
+				<ul className="nav-links">
+					<li className="nav-logo">
+						<NavLink exact to="/">
+							<img
+								src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/%E2%80%94Pngtree%E2%80%94kpop+color+graphic+logo+south_6607272.png"
+								alt="nav-logo"
+							/>
+						</NavLink>
+					</li>
+					<li>
+						<NavLink exact to="/songs">
+							Library
+						</NavLink>
+					</li>
+					<li>
+						<NavLink exact to="/upload">
+							Upload
+						</NavLink>
+					</li>
+					<li>{isLoaded && sessionLinks}</li>
+				</ul>
 			</div>
 		</nav>
 	);
