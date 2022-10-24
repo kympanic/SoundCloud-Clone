@@ -6,6 +6,7 @@ import SongsPage from "./components/SongsPage";
 import SongsInfo from "./components/SongsInfo";
 import ProfilePage from "./components/ProfileSection";
 import EditSongPage from "./components/EditSongPage";
+import PageNotFound from "./components/PageNotFound";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
@@ -33,8 +34,11 @@ function App() {
 					<Route exact path="/profile">
 						<ProfilePage />
 					</Route>
-					<Route exact path="/:songId/edit">
+					<Route exact path="/songs/:songId/edit">
 						<EditSongPage />
+					</Route>
+					<Route path="/">
+						<PageNotFound />
 					</Route>
 				</Switch>
 			)}
