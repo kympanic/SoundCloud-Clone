@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const SongsPage = () => {
 	const dispatch = useDispatch();
 	const allSongs = useSelector((state) => Object.values(state.songs));
-
 	useEffect(() => {
 		dispatch(getAllSongs());
 	}, [dispatch]);
@@ -17,7 +16,7 @@ const SongsPage = () => {
 
 			<div>
 				{allSongs.map((song) => (
-					<li key={song.id} className="song-card">
+					<li key={song?.id} className="song-card">
 						<div
 							className="card-img-wrapper"
 							style={{ backgroundImage: "url(" + song.previewImage + ")" }}

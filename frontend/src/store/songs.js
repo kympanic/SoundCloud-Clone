@@ -37,6 +37,21 @@ export const createSong = (song) => async (dispatch) => {
 	}
 };
 
+export const editSong = (song) => async (dispatch) => {
+	let editSong = await csrfFetch("/api/songs", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(song),
+	});
+	if (editSong.ok) {
+		editSong = await editSong.JSON();
+		dispatch(addSong(editSong));
+		return editSong;
+	}
+};
+
 const songsReducer = (state = {}, action) => {
 	let newState = {};
 	switch (action.type) {
