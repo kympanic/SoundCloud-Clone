@@ -38,17 +38,17 @@ export const createSong = (song) => async (dispatch) => {
 };
 
 export const editSong = (song) => async (dispatch) => {
-	let editSong = await csrfFetch("/api/songs", {
+	let res = await csrfFetch(`/api/songs/${song.id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(song),
 	});
-	if (editSong.ok) {
-		editSong = await editSong.JSON();
-		dispatch(addSong(editSong));
-		return editSong;
+	if (res.ok) {
+		res = await res.json();
+		dispatch(addSong(res));
+		return res;
 	}
 };
 
