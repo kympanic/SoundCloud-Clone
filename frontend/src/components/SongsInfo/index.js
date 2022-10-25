@@ -1,15 +1,14 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { restoreUser } from "../../store/session";
-import { getAllSongs } from "../../store/songs";
-import EditSongButton from "../EditSongPage/EditSongButton";
-
+// import EditSongButton from "../EditSongPage/EditSongButton";
+import { Link } from "react-router-dom";
 import "./SongsInfo.css";
 
 const SongsInfo = () => {
 	const { songId } = useParams();
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const song = useSelector((state) => state.songs[songId]);
 	const sessionUser = useSelector((state) => state.session?.user);
 	const audio = new Audio(song?.url);
@@ -24,10 +23,9 @@ const SongsInfo = () => {
 		audio.pause();
 	};
 
-	useEffect(() => {
-		dispatch(getAllSongs());
-		dispatch(restoreUser());
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	dispatch(restoreUser());
+	// }, [dispatch]);
 
 	return (
 		<div className="song-full-container">
@@ -43,7 +41,8 @@ const SongsInfo = () => {
 				<div>
 					{songUserId === sessionUser?.user?.id && (
 						<div>
-							<EditSongButton />
+							<Link to={`/songs/${songId}/edit`}>Edit</Link>;
+							<Link to={`/songs/${songId}/delete`}>Delete</Link>
 						</div>
 					)}
 				</div>

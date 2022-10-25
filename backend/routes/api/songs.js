@@ -114,7 +114,7 @@ router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 	const { user } = req;
 	const currentAlbum = await Album.findByPk(albumId);
 	//check to see if album exists
-	if (albumId === null) {
+	if (!albumId) {
 		const newSong = await Song.create({
 			userId: user.id,
 			title,
@@ -141,7 +141,8 @@ router.post("/", requireAuth, restoreUser, validateSong, async (req, res) => {
 			updatedAt: Song.updatedAt,
 			previewImage: imageUrl,
 		});
-		res.status(201).json(newSong);
+
+		return res.status(201).json(newSong);
 	}
 });
 

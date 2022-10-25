@@ -41,7 +41,7 @@ function Navigation({ isLoaded }) {
 						</NavLink>
 					</li>
 					<li>
-						<NavLink exact to="/upload">
+						<NavLink exact to="/upload/song">
 							Upload
 						</NavLink>
 					</li>

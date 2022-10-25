@@ -10,14 +10,15 @@ const EditSongPage = () => {
 	const history = useHistory();
 
 	const { songId } = useParams();
-	const sessionUser = useSelector((state) => state?.session?.user);
+	//took out one ? in front of the session
+	const sessionUser = useSelector((state) => state.session?.user);
 	const song = useSelector((state) => state.songs[songId]);
 
 	const [title, setTitle] = useState(song?.title);
 	const [description, setDescription] = useState(song?.description);
 	const [url, setUrl] = useState(song?.url);
-	const [previewImage, setPreviewImage] = useState(song?.previewImage);
-	// const [errors, setErrors] = useState([]);
+	const [imageUrl, setImageUrl] = useState(song?.previewImage);
+	const [errors, setErrors] = useState([]);
 
 	useEffect(() => {
 		dispatch(getAllSongs());
@@ -27,18 +28,29 @@ const EditSongPage = () => {
 		return <PageNotFound />;
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		setErrors([]);
 
 		const editedSong = {
 			...song,
 			title,
 			description,
 			url,
-			previewImage,
+			imageUrl,
 		};
-		dispatch(editSong(editedSong));
-		history.push(`/songs/${song.id}`);
+
+		await dispatch(editSong(editedSong))
+			.then(() => history.push(`/songs/${song?.id}`))
+			.catch(async (res) => {
+				const data = await res.json();
+				console.log(data);
+				if (data && data.errors) {
+					let foundErrors = Object.values(data.errors);
+					setErrors(foundErrors);
+				}
+			});
 	};
 	const handleCancel = (e) => {
 		e.preventDefault();
@@ -56,7 +68,7 @@ const EditSongPage = () => {
 							type="text"
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
-							required
+							// required
 						/>
 					</label>
 				</div>
@@ -67,7 +79,7 @@ const EditSongPage = () => {
 							type="text"
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
-							required
+							// required
 						/>
 					</label>
 				</div>
@@ -78,7 +90,7 @@ const EditSongPage = () => {
 							type="url"
 							value={url}
 							onChange={(e) => setUrl(e.target.value)}
-							required
+							// required
 						/>
 					</label>
 				</div>
@@ -87,9 +99,9 @@ const EditSongPage = () => {
 						Image Url
 						<input
 							type="url"
-							value={previewImage}
-							onChange={(e) => setPreviewImage(e.target.value)}
-							required
+							value={imageUrl}
+							onChange={(e) => setImageUrl(e.target.value)}
+							// required
 						/>
 					</label>
 				</div>
@@ -97,11 +109,11 @@ const EditSongPage = () => {
 					<button type="submit">Edit Song</button>
 					<button onClick={handleCancel}>Cancel</button>
 				</div>
-				{/* <ul>
-					{errorList.map((error, idx) => (
+				<ul>
+					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
-				</ul> */}
+				</ul>
 			</form>
 		)
 	);
