@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
 import DemoUser from "../DemoUser";
 import "./Navigation.css";
+import SearchBar from "../SearchBar";
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -45,6 +46,7 @@ function Navigation({ isLoaded }) {
 							Upload
 						</NavLink>
 					</li>
+					<SearchBar />
 					<li>{isLoaded && sessionLinks}</li>
 				</ul>
 			</div>

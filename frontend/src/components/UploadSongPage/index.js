@@ -2,18 +2,22 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { createSong } from "../../store/songs";
+import PageNotFound from "../PageNotFound";
 
 const UploadSongPage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const sessionUser = useSelector((state) => state.session.user);
 	const userId = sessionUser?.user?.id;
-
 	const [title, setTitle] = useState("");
 	const [url, setUrl] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
 	const [description, setDescription] = useState("");
 	const [errors, setErrors] = useState([]);
+
+	if (!sessionUser) {
+		return <PageNotFound />;
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
