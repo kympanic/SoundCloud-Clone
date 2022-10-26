@@ -59,13 +59,22 @@ export const editSong = (song) => async (dispatch) => {
 	}
 };
 
-let newState = {};
+export const removeSong = (id) => async (dispatch) => {
+	const res = await csrfFetch(`/api/songs/${id}`, {
+		method: "DELETE",
+	});
+
+	if (res.ok) {
+		dispatch(deleteSong(id));
+	}
+};
 
 const songsReducer = (state = {}, action) => {
+	let newState = {};
 	switch (action.type) {
 		case GET_SONGS:
 			newState = { ...state };
-			action.payload.forEach((song) => {
+			action.payload.songs.forEach((song) => {
 				newState[song.id] = song;
 			});
 			return newState;

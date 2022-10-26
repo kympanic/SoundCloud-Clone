@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import PageNotFound from "../PageNotFound";
-import { deleteSong } from "../../store/songs";
+import { removeSong } from "../../store/songs";
 import { Link, useHistory, useParams } from "react-router-dom";
 const DeleteSongPage = () => {
 	const { songId } = useParams();
@@ -15,7 +15,7 @@ const DeleteSongPage = () => {
 
 	const handleDelete = (e) => {
 		e.preventDefault();
-		dispatch(deleteSong(song.id));
+		dispatch(removeSong(song.id));
 		history.push("/songs");
 	};
 

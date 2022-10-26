@@ -17,23 +17,18 @@ const router = express.Router();
 
 //get all songs
 router.get("/", restoreUser, validateQuery, async (req, res) => {
-	let query = {
-		where: {},
-	};
-
-	const page = req.query.page === undefined ? 0 : parseInt(req.query.page);
-	const size = req.query.size === undefined ? 20 : parseInt(req.query.size);
-
-	if (page >= 1 && size >= 1) {
-		query.limit = size;
-		query.offset = size * (page - 1);
-	}
-
-	if (req.query.title) query.where.title = req.query.title;
-	if (req.query.createdAt) query.where.createdAt = req.query.createdAt;
-
-	let Songs = await Song.findAll(query);
-	res.json(Songs);
+	const songs = await Song.findAll({
+		order: [["createdAt", "DESC"]],
+		include: [
+			{
+				model: User,
+				include: [{ model: Album }],
+			},
+		],
+	});
+	return res.json({
+		songs,
+	});
 });
 
 // Get details of a Song from an id
@@ -214,6 +209,7 @@ router.put(
 
 //delete a song
 router.delete("/:songId", requireAuth, restoreUser, async (req, res) => {
+	console.log("THIS IS HEREJRLKSKFJSLDKJFSLDK:FSD:F");
 	const { songId } = req.params;
 	const { user } = req;
 	const deletedSong = await Song.findByPk(songId);
