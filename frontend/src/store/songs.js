@@ -36,7 +36,6 @@ export const createSong = (song) => async (dispatch) => {
 		},
 		body: JSON.stringify(song),
 	});
-	console.log(res);
 	if (res.ok) {
 		const newSong = await res.json();
 		dispatch(addSong(newSong));

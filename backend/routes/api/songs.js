@@ -74,32 +74,16 @@ router.get("/:songId", async (req, res) => {
 //Get all Comments by a Song's id
 
 router.get("/:songId/comments", async (req, res) => {
-	const { songId } = req.params;
-	const song = await Song.findByPk(songId);
-	if (!song) {
-		res.statusCode = 404;
-		res.json({
-			message: "Song couldn't be found",
-			statusCode: 404,
-		});
-	}
-
-	const Comments = await song.getComments({
+	const comments = await Comment.findAll({
+		where: { songId: parseInt(req.params.songId) },
 		include: [
 			{
 				model: User,
-				attributes: ["id", "username"],
 			},
 		],
+		order: [["createdAt", "DESC"]],
 	});
-	//checks to see if there are any comments
-	if (!Comments[0]) {
-		res.status(404).json({
-			message: "There are no comments",
-			statusCode: 404,
-		});
-	}
-	res.json({ Comments });
+	return res.json(comments);
 });
 
 //create a song
@@ -149,9 +133,10 @@ router.post(
 	validateComments,
 	async (req, res) => {
 		const { user } = req;
-		const { songId } = req.params;
+		const songId = parseInt(req.params.songId);
 		const { body } = req.body;
 		const currentSong = await Song.findByPk(songId);
+
 		if (!currentSong) {
 			res.statusCode = 404;
 			return res.json({
@@ -159,6 +144,7 @@ router.post(
 				statusCode: 404,
 			});
 		}
+
 		const newComment = await Comment.create({
 			userId: user.id,
 			songId,

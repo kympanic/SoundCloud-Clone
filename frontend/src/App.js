@@ -47,6 +47,7 @@ function App() {
 					<Route exact path="/songs/:songId/delete">
 						<DeleteSongPage />
 					</Route>
+
 					<Route path="/">
 						<PageNotFound />
 					</Route>
