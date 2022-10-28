@@ -9,7 +9,6 @@ const SongsPage = () => {
 	const dispatch = useDispatch();
 	const allSongs = useSelector((state) => Object.values(state.songs));
 	const sessionUser = useSelector((state) => state.session?.user);
-	console.log(allSongs, "THIS IS ALL THE SONGS");
 	useEffect(() => {
 		dispatch(getAllSongs());
 	}, [dispatch]);

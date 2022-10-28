@@ -8,6 +8,7 @@ import { getAllComments } from "../../store/comments";
 import CommentSection from "../CommentSection";
 import CommentCreateForm from "../CommentCreateForm";
 import "./SongsInfo.css";
+import PageNotFound from "../PageNotFound";
 
 const SongsInfo = () => {
 	const { songId } = useParams();
@@ -16,6 +17,7 @@ const SongsInfo = () => {
 	const sessionUser = useSelector((state) => state.session?.user);
 	const comments = useSelector((state) => Object.values(state.comments));
 
+	//audio
 	const audio = new Audio(song?.url);
 	const songUserId = song?.userId;
 	//audio controls
@@ -27,10 +29,14 @@ const SongsInfo = () => {
 	};
 
 	useEffect(() => {
-		dispatch(restoreUser());
+		// dispatch(restoreUser());
 		dispatch(getAllSongs());
 		dispatch(getAllComments(song?.id));
 	}, [dispatch, song?.id]);
+
+	if (!sessionUser) {
+		return <PageNotFound />;
+	}
 
 	return (
 		<div className="page-container">
@@ -62,11 +68,15 @@ const SongsInfo = () => {
 				<div className="comments-container">
 					<CommentCreateForm songId={songId} sessionUser={sessionUser} />
 					<div className="user-comments-section">
-						<CommentSection
-							song={song}
-							comments={comments}
-							sessionUser={sessionUser}
-						/>
+						{comments &&
+							comments?.map((comment) => (
+								<CommentSection
+									comment={comment}
+									key={comment?.id}
+									sessionUser={sessionUser}
+									songId={songId}
+								/>
+							))}
 					</div>
 				</div>
 			</div>
