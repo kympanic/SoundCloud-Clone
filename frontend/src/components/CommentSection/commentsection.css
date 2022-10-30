@@ -1,0 +1,12 @@
+/* .comments-container {
+	border: 2px orange solid;
+} */
+
+.comments-user-body {
+	/* border: 2px yellow solid; */
+	padding-right: 15px;
+	display: flex;
+	justify-content: space-between;
+	height: 50px;
+	align-items: center;
+}

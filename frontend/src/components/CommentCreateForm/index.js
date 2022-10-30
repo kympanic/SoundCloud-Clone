@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createComment } from "../../store/comments";
+import "./commentcreateform.css";
 
 const CommentCreateForm = ({ songId, sessionUser }) => {
 	const dispatch = useDispatch();
@@ -15,8 +16,9 @@ const CommentCreateForm = ({ songId, sessionUser }) => {
 
 	return (
 		<div className="comment-upload-container">
-			<form onSubmit={handleCommentUpload}>
+			<form className="comment-upload-form" onSubmit={handleCommentUpload}>
 				<input
+					className="comment-input-box"
 					type="text"
 					value={body}
 					placeholder="Add Comment..."

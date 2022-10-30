@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { editSong, getAllSongs } from "../../store/songs";
 import { useDispatch } from "react-redux";
 import PageNotFound from "../PageNotFound";
+import "./editsongpage.css";
 
 const EditSongPage = () => {
 	const dispatch = useDispatch();
@@ -59,64 +60,135 @@ const EditSongPage = () => {
 
 	return (
 		sessionUser && (
-			<form onSubmit={handleSubmit}>
-				<h1>Edit Song</h1>
-				<div className="input-container">
-					<label>
-						Title
-						<input
-							type="text"
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-							// required
-						/>
-					</label>
+			<div className="edit-page-background">
+				<div id="edit-form-text">
+					<h2>Edit Your Song</h2>
 				</div>
-				<div className="input-container">
-					<label>
-						Description
-						<input
-							type="text"
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
-							// required
-						/>
-					</label>
+				<div className="edit-form-container">
+					<div className="edit-form-wrapper-left">
+						<form onSubmit={handleSubmit}>
+							<div className="edit-input-container">
+								<label htmlFor="title">Title:</label>
+								<input
+									type="text"
+									value={title}
+									name="title"
+									onChange={(e) => setTitle(e.target.value)}
+									// required
+								/>
+							</div>
+							<div className="edit-input-container">
+								<label htmlFor="description">Description:</label>
+								<input
+									type="text"
+									name="description"
+									value={description}
+									onChange={(e) => setDescription(e.target.value)}
+								/>
+							</div>
+							<div className="edit-input-container">
+								<label htmlFor="url">Audio Url:</label>
+								<input
+									type="url"
+									value={url}
+									name="url"
+									onChange={(e) => setUrl(e.target.value)}
+								/>
+							</div>
+							<div className="edit-input-container">
+								<label htmlFor="imageurl">Image Url</label>
+								<input
+									type="url"
+									value={imageUrl}
+									name="imageUrl"
+									onChange={(e) => setImageUrl(e.target.value)}
+								/>
+							</div>
+							<div className="edit-button-container">
+								<button id="edit-submit-button" type="submit">
+									Edit
+								</button>
+								<button id="edit-cancel-button" onClick={handleCancel}>
+									Cancel
+								</button>
+							</div>
+							<ul className="edit-error-list">
+								{errors.map((error, idx) => (
+									<li key={idx}>{error}</li>
+								))}
+							</ul>
+						</form>
+					</div>
+					<div className="edit-form-wrapper-right">
+						<div className="edit-img-wrapper">
+							<img src={song?.previewImage} alt="songimg" />
+						</div>
+					</div>
 				</div>
-				<div className="input-container">
-					<label>
-						Audio Url
-						<input
-							type="url"
-							value={url}
-							onChange={(e) => setUrl(e.target.value)}
-							// required
-						/>
-					</label>
-				</div>
-				<div className="input-container">
-					<label>
-						Image Url
-						<input
-							type="url"
-							value={imageUrl}
-							onChange={(e) => setImageUrl(e.target.value)}
-							// required
-						/>
-					</label>
-				</div>
-				<div>
-					<button type="submit">Edit Song</button>
-					<button onClick={handleCancel}>Cancel</button>
-				</div>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-			</form>
+			</div>
 		)
 	);
+
+	// return (
+	// 	sessionUser && (
+	// 		<form onSubmit={handleSubmit}>
+	// 			<h1>Edit Song</h1>
+	// 			<div className="input-container">
+	// 				<label>
+	// 					Title
+	// 					<input
+	// 						type="text"
+	// 						value={title}
+	// 						onChange={(e) => setTitle(e.target.value)}
+	// 						// required
+	// 					/>
+	// 				</label>
+	// 			</div>
+	// 			<div className="input-container">
+	// 				<label>
+	// 					Description
+	// 					<input
+	// 						type="text"
+	// 						value={description}
+	// 						onChange={(e) => setDescription(e.target.value)}
+	// 						// required
+	// 					/>
+	// 				</label>
+	// 			</div>
+	// 			<div className="input-container">
+	// 				<label>
+	// 					Audio Url
+	// 					<input
+	// 						type="url"
+	// 						value={url}
+	// 						onChange={(e) => setUrl(e.target.value)}
+	// 						// required
+	// 					/>
+	// 				</label>
+	// 			</div>
+	// 			<div className="input-container">
+	// 				<label>
+	// 					Image Url
+	// 					<input
+	// 						type="url"
+	// 						value={imageUrl}
+	// 						onChange={(e) => setImageUrl(e.target.value)}
+	// 						// required
+	// 					/>
+	// 				</label>
+	// 			</div>
+	// 			<div>
+	// 				<button type="submit">Edit Song</button>
+	// 				<button onClick={handleCancel}>Cancel</button>
+	// 			</div>
+	// 			<ul>
+	// 				{errors.map((error, idx) => (
+	// 					<li key={idx}>{error}</li>
+	// 				))}
+	// 			</ul>
+	// 		</form>
+	// 	)
+	// );
 };
 
 export default EditSongPage;

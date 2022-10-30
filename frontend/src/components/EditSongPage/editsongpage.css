@@ -1,0 +1,104 @@
+.edit-page-background {
+	font-family: "Montserrat", sans-serif;
+	background-image: url(https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/AllSongsBackground.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.edit-form-container {
+	background-color: white;
+	margin-left: 14%;
+	margin-right: 14%;
+	margin-top: 30px;
+	border: 2px solid rgb(231, 231, 231);
+	padding-top: 100px;
+	height: 800px;
+	display: flex;
+	/* align-items: center; */
+}
+
+#edit-form-text {
+	font-size: 35px;
+	margin-top: 30px;
+	margin-bottom: 25px;
+	padding-top: 100px;
+	padding-bottom: 30px;
+	margin-left: 620px;
+}
+
+.edit-input-container {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+	margin-bottom: 15px;
+	margin-left: 10px;
+	/* align-items: center; */
+}
+form .edit-input-container input,
+form .edit-input-container textarea {
+	border: 2px solid lightgrey;
+	padding: 6px 5px;
+	border-radius: 5px;
+	outline: none;
+	width: 600px;
+	margin-top: 10px;
+	margin-left: 2px;
+}
+
+.edit-img-wrapper img {
+	width: 500px;
+	height: 500px;
+	object-fit: cover;
+	border-left: solid grey 2px;
+	padding-left: 60px;
+	margin-left: 50px;
+}
+
+.edit-button-container {
+	margin-left: 90px;
+	padding-left: 100px;
+	padding-top: 5px;
+}
+
+#edit-submit-button {
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: white;
+	border: 2px solid lightgray;
+	margin-right: 50px;
+	border-radius: 10px;
+	width: 100px;
+}
+
+#edit-submit-button:hover {
+	color: white;
+	background-color: darkgray;
+	border: white 2px solid;
+}
+
+#edit-cancel-button {
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: white;
+	border: 2px solid lightgray;
+	margin-right: 50px;
+	border-radius: 10px;
+	width: 100px;
+	color: red;
+}
+
+#edit-cancel-button:hover {
+	color: white;
+	background-color: darkgray;
+	border: white 2px solid;
+}
+
+.edit-error-list {
+	margin-left: 220px;
+	color: red;
+	padding-top: 20px;
+}

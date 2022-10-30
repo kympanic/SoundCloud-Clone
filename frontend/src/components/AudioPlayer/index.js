@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-
 import { useState } from "react";
+import "./audioplayer.css";
 
 const Player = () => {
 	const allSongs = useSelector((state) => Object.values(state.songs));
@@ -12,7 +12,8 @@ const Player = () => {
 	const handleClickPrevious = () => {
 		setTrackNumber((trackNumber) => {
 			if (trackNumber === 0) {
-				return;
+				trackNumber = allSongs.length - 1;
+				return trackNumber;
 			} else {
 				return trackNumber - 1;
 			}

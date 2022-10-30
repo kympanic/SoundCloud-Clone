@@ -1,0 +1,101 @@
+.upload-page-background {
+	font-family: "Montserrat", sans-serif;
+	background-image: url(https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/AllSongsBackground.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.upload-form-container {
+	background-color: white;
+	margin-left: 14%;
+	margin-right: 14%;
+	margin-top: 30px;
+	border: 2px solid rgb(231, 231, 231);
+	padding-top: 100px;
+	height: 800px;
+	display: flex;
+	/* align-items: center; */
+}
+
+#upload-form-text {
+	font-size: 35px;
+	margin-top: 30px;
+	margin-bottom: 25px;
+	padding-top: 100px;
+	padding-bottom: 30px;
+	margin-left: 520px;
+}
+
+.upload-input-container {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+	margin-bottom: 15px;
+	margin-left: 10px;
+	/* align-items: center; */
+}
+form .upload-input-container input,
+form .upload-input-container textarea {
+	border: 2px solid lightgrey;
+	padding: 6px 5px;
+	border-radius: 5px;
+	outline: none;
+	width: 600px;
+	margin-top: 10px;
+	margin-left: 2px;
+}
+
+.upload-img-wrapper img {
+	width: 500px;
+	height: 600px;
+	object-fit: cover;
+	margin-left: 150px;
+	border-left: solid grey 2px;
+	padding-left: 90px;
+	margin-left: 50px;
+}
+
+.upload-button-container {
+	margin-left: 90px;
+	padding-left: 100px;
+	padding-top: 5px;
+}
+
+#upload-submit-button {
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: white;
+	border: 2px solid lightgray;
+	margin-right: 50px;
+	border-radius: 10px;
+	width: 100px;
+}
+
+#upload-submit-button:hover {
+	color: white;
+	background-color: darkgray;
+}
+
+#upload-cancel-button {
+	font-size: 20px;
+	background-color: white;
+	border: 2px solid lightgray;
+	border-radius: 10px;
+	padding: 11px;
+	color: red;
+	font-weight: bold;
+}
+
+#upload-cancel-button:hover {
+	color: white;
+	background-color: darkgray;
+}
+
+.upload-error-list {
+	margin-left: 220px;
+	color: red;
+	padding-top: 20px;
+}

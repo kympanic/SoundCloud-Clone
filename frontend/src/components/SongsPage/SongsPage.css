@@ -1,18 +1,25 @@
+.song-page-background {
+	background-color: rgb(231, 231, 231);
+}
+
 .songs-list-full-container {
-	background: #fff;
-	background-color: rgb(93, 87, 107);
 	font-family: "Montserrat", sans-serif;
 	background-image: url(https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/AllSongsBackground.jpg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-color: white;
+	margin-left: 14%;
+	margin-right: 14%;
 }
 .songs-list-full-container h1 {
-	margin-bottom: 200px;
+	margin-top: 40px;
+	margin-bottom: 100px;
 	text-align: center;
 	padding-top: 50px;
 	color: white;
 	font-size: 70px;
+
 	/* border: 2px black solid; */
 }
 
@@ -22,12 +29,9 @@
 	justify-content: center;
 	margin: 0 auto;
 	max-width: 1000px;
-
-	background: linear-gradient(
-		90deg,
-		rgba(117, 185, 190, 1) 50%,
-		rgba(255, 255, 255, 1) 100%
-	);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	border-radius: 5px;
 }
 
@@ -35,7 +39,6 @@
 	width: 294px;
 	margin: 10px 10px 14px 10px;
 	list-style: none;
-	/* border: 2px green solid; */
 	text-align: center;
 	cursor: pointer;
 	border-radius: 5px;
@@ -52,7 +55,7 @@
 .song-card p {
 	overflow: hidden;
 	white-space: nowrap;
-	border: purple solid 2px;
+	border: grey solid 2px;
 	font-size: 20px;
 	color: white;
 	font-weight: bold;

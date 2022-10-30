@@ -22,7 +22,7 @@ function LoginForm() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className="forms" onSubmit={handleSubmit}>
 			<h1>Login</h1>
 
 			<div className="input-container">

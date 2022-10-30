@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { restoreUser } from "../../store/session";
+// import { restoreUser } from "../../store/session";
 import { Link } from "react-router-dom";
 import { getAllSongs } from "../../store/songs";
 import { getAllComments } from "../../store/comments";
@@ -14,19 +14,10 @@ const SongsInfo = () => {
 	const { songId } = useParams();
 	const dispatch = useDispatch();
 	const song = useSelector((state) => state.songs[songId]);
-	const sessionUser = useSelector((state) => state.session?.user);
+	const sessionUser = useSelector((state) => state?.session?.user);
 	const comments = useSelector((state) => Object.values(state.comments));
 
-	//audio
-	const audio = new Audio(song?.url);
-	const songUserId = song?.userId;
-	//audio controls
-	const start = () => {
-		audio.play();
-	};
-	const stop = () => {
-		audio.pause();
-	};
+	// const songUserId = song?.userId;
 
 	useEffect(() => {
 		// dispatch(restoreUser());
@@ -39,44 +30,88 @@ const SongsInfo = () => {
 	}
 
 	return (
-		<div className="page-container">
-			<div className="song-full-container">
-				<div className="solosong-card">
-					<div
-						className="song-img-wrapper"
-						style={{ backgroundImage: "url(" + song?.previewImage + ")" }}
-					></div>
-					<div className="song-text">
-						<p>{song?.description}</p>
-						<h1>{song?.title}</h1>
+		<div className="song-info-background">
+			<div className="song-info-page">
+				<div className="song-full-container">
+					<div id="song-container-left">
+						<div className="song-text">
+							<h1>{song?.title}</h1>
+							<p>{song?.description}</p>
+						</div>
+						<div>
+							{song?.userId === sessionUser?.user?.id && (
+								<div className="song-edit-delete-btns">
+									<Link className="song-edit-btn" to={`/songs/${songId}/edit`}>
+										Edit
+									</Link>
+									<Link
+										className="song-edit-btn"
+										to={`/songs/${songId}/delete`}
+									>
+										Delete
+									</Link>
+								</div>
+							)}
+						</div>
 					</div>
-					<div>
-						{songUserId === sessionUser?.user?.id && (
-							<div>
-								<Link to={`/songs/${songId}/edit`}>Edit</Link>;
-								<Link to={`/songs/${songId}/delete`}>Delete</Link>
-							</div>
-						)}
-					</div>
-					<div>
-						<button onClick={start}>Play</button>
-						<button onClick={stop}>Stop</button>
+					<div id="song-container-right">
+						<div
+							className="song-img-wrapper"
+							style={{ backgroundImage: "url(" + song?.previewImage + ")" }}
+						></div>
 					</div>
 				</div>
-			</div>
-			<div id="comments-song">
-				<div className="comments-container">
-					<CommentCreateForm songId={songId} sessionUser={sessionUser} />
-					<div className="user-comments-section">
-						{comments &&
-							comments?.map((comment) => (
-								<CommentSection
-									comment={comment}
-									key={comment?.id}
-									sessionUser={sessionUser}
-									songId={songId}
-								/>
-							))}
+				<div id="comments-song">
+					<div className="comments-container">
+						<CommentCreateForm songId={songId} sessionUser={sessionUser} />
+						<div id="song-icons-bar">
+							<div id="song-icons-buttons">
+								<button className="song-btns">
+									<i className="fas fa-heart"></i>
+									Like
+								</button>
+								<button className="song-btns">
+									<i className="fas fa-retweet"></i>
+									Repost
+								</button>
+								<button className="song-btns">
+									<i className="fas fa-share-square"></i>
+									Share
+								</button>
+							</div>
+							<div id="song-stats">
+								<div className="songs-stats-divs">
+									<i className="fas fa-play"></i>
+									<p>50</p>
+								</div>
+								<div className="songs-stats-divs">
+									<i className="fas fa-heart"></i>
+									<p>300</p>
+								</div>
+								<div className="songs-stats-divs">
+									<i className="fas fa-retweet"></i>
+									<p>100</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="comments-area">
+						<div className="user-comments-section">
+							{comments &&
+								comments?.map((comment) => (
+									<CommentSection
+										comment={comment}
+										key={comment?.id}
+										sessionUser={sessionUser}
+										songId={songId}
+									/>
+								))}
+						</div>
+						<div id="comments-right-area">
+							<div>
+								<p>placeholder</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
 		<nav>
 			<div className="nav-bar">
 				<ul className="nav-links">
-					<li className="nav-logo">
+					<li id="nav-logo">
 						<NavLink exact to="/">
 							<img
 								src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/%E2%80%94Pngtree%E2%80%94kpop+color+graphic+logo+south_6607272.png"
@@ -36,18 +36,23 @@ function Navigation({ isLoaded }) {
 							/>
 						</NavLink>
 					</li>
-					<li>
+					<li id="nav-home-link">
+						<NavLink exact to="/">
+							Home
+						</NavLink>
+					</li>
+					<li id="nav-library-link">
 						<NavLink exact to="/songs">
 							Library
 						</NavLink>
 					</li>
-					<li>
+					<SearchBar />
+					<li id="nav-upload-link">
 						<NavLink exact to="/upload/song">
 							Upload
 						</NavLink>
 					</li>
-					<SearchBar />
-					<li>{isLoaded && sessionLinks}</li>
+					<li id="nav-profile-link">{isLoaded && sessionLinks}</li>
 				</ul>
 			</div>
 		</nav>

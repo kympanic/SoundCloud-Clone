@@ -4,21 +4,23 @@ nav {
 	top: 0%;
 	width: 100%;
 	z-index: 10;
-	height: 100px;
+	height: 50px;
 }
 
 nav ul {
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	display: flex;
 	border: orange solid 2px;
 	width: 100%;
+	height: 50px;
 }
 
 .nav-bar {
 	display: flex;
-	width: 100%;
-	height: 70px;
+	margin-left: 14%;
+	margin-right: 14%;
+	height: 50px;
 	border: 2px green solid;
 }
 
@@ -28,9 +30,17 @@ nav ul {
 	text-decoration: none;
 }
 
-.nav-logo a {
+#nav-logo a {
 	background: #ffffff;
-	color: #fff;
+	/* color: #fff; */
 	display: flex;
-	height: 80px;
+	height: 50px;
+	margin-left: 70px;
+}
+
+#nav-profile-link {
+	border: 2px purple solid;
+	height: 50px;
+	width: 150px;
+	margin-right: 86px;
 }
