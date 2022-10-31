@@ -11,7 +11,7 @@
 	margin-left: 14%;
 	margin-right: 14%;
 	margin-top: 30px;
-	border: 2px solid rgb(231, 231, 231);
+	border: 2px solid #f6eff1;
 	padding-top: 100px;
 	height: 800px;
 	display: flex;
@@ -52,7 +52,7 @@ form .upload-input-container textarea {
 	height: 600px;
 	object-fit: cover;
 	margin-left: 150px;
-	border-left: solid grey 2px;
+	border-left: solid #f6eff1 2px;
 	padding-left: 90px;
 	margin-left: 50px;
 }

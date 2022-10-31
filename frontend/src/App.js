@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import SongsPage from "./components/SongsPage";
 import SongsInfo from "./components/SongsInfo";
-import ProfilePage from "./components/ProfileSection";
 import EditSongPage from "./components/EditSongPage";
 import PageNotFound from "./components/PageNotFound";
 import UploadSongPage from "./components/UploadSongPage";
@@ -36,9 +35,6 @@ function App() {
 						</Route>
 						<Route exact path="/songs/:songId">
 							<SongsInfo />
-						</Route>
-						<Route exact path="/profile">
-							<ProfilePage />
 						</Route>
 						<Route exact path="/songs/:songId/edit">
 							<EditSongPage />

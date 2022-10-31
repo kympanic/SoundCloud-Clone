@@ -6,7 +6,6 @@ import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
 import DemoUser from "../DemoUser";
 import "./Navigation.css";
-import SearchBar from "../SearchBar";
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -46,7 +45,6 @@ function Navigation({ isLoaded }) {
 							Library
 						</NavLink>
 					</li>
-					<SearchBar />
 					<li id="nav-upload-link">
 						<NavLink exact to="/upload/song">
 							Upload

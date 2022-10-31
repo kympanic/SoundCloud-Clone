@@ -1,5 +1,5 @@
 .song-info-background {
-	background-color: rgb(231, 231, 231);
+	background-color: #f6eff1;
 }
 
 .song-info-page {
@@ -27,7 +27,6 @@
 	justify-content: space-between;
 }
 
-/*title */
 .song-full-container h1 {
 	color: black;
 	font-size: 45px;
@@ -36,6 +35,8 @@
 	color: black;
 	font-size: 20px;
 	margin-top: 20px;
+	margin-right: 200px;
+	margin-top: 100px;
 }
 
 .song-img-wrapper {
@@ -61,11 +62,16 @@
 
 .song-edit-btn {
 	color: black;
-	border: 3px grey solid;
+	border: 2px rgb(153, 153, 217) solid;
 	width: 100px;
 	height: 100%;
 	padding: 10px;
 	border-radius: 4px;
+}
+
+.song-edit-btn:hover {
+	background-color: rgb(153, 153, 217);
+	color: white;
 }
 
 .user-comments-section {
@@ -121,7 +127,7 @@
 }
 
 #comments-right-area {
-	border-left: lightgrey solid 1px;
+	border-left: grey solid 1px;
 	background-color: white;
 	width: 350px;
 }

@@ -1,3 +1,13 @@
 .search-container {
-	border: 3px grey solid;
+	background-color: lavender;
+	width: 600px;
+	border-radius: 5px;
+}
+
+.search-input {
+	margin: 11px;
+	width: 500px;
+	height: 30px;
+	background-color: lavender;
+	font-size: 20px;
 }

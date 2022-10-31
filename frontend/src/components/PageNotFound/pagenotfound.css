@@ -1,0 +1,52 @@
+.page-not-found-container {
+	padding-top: 40px;
+	min-height: 800px;
+	display: flex;
+	flex-direction: column;
+	background-color: #f6eff1;
+	font-family: "Montserrat", sans-serif;
+	text-align: center;
+}
+
+#page-not-found-wrapper {
+	margin-left: 14%;
+	margin-right: 14%;
+	min-height: 800px;
+	background-color: white;
+}
+
+#page-not-found-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: white;
+	height: 400px;
+	width: 100%;
+	background-image: url("https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/404imgheader.jpg");
+}
+
+#page-not-found-title {
+	padding-top: 40px;
+	font-size: 40px;
+	padding-bottom: 40px;
+}
+
+#page-not-found-p {
+	padding-bottom: 80px;
+	font-size: 17px;
+}
+
+#page-not-found-btn {
+	padding: 10px;
+	border: 2px solid rgb(153, 153, 217);
+	background-color: rgb(153, 153, 217);
+	color: white;
+	font-size: 30px;
+	border-radius: 10px;
+}
+
+#page-not-found-btn:hover {
+	background-color: white;
+
+	color: rgb(153, 153, 217);
+}

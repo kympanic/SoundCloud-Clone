@@ -1,5 +1,5 @@
 .song-page-background {
-	background-color: rgb(231, 231, 231);
+	background-color: #f6eff1;
 }
 
 .songs-list-full-container {
@@ -19,8 +19,6 @@
 	padding-top: 50px;
 	color: white;
 	font-size: 70px;
-
-	/* border: 2px black solid; */
 }
 
 .songs-list-full-container > div {
@@ -32,7 +30,6 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	border-radius: 5px;
 }
 
 .song-card {
@@ -57,8 +54,13 @@
 	white-space: nowrap;
 	border: grey solid 2px;
 	font-size: 20px;
-	color: white;
+	color: darkgrey;
 	font-weight: bold;
+	background-color: white;
+}
+.song-card p:hover {
+	background-color: darkgray;
+	color: white;
 }
 
 .card-img-wrapper {
@@ -66,10 +68,8 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 250px;
-	margin-bottom: 10px;
 	position: relative;
 	width: 100%;
-	border-radius: 5px;
 }
 .song-link-text {
 	text-decoration: none;
