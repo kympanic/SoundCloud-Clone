@@ -1,0 +1,9 @@
+.logout-btn {
+	font-family: "Montserrat", sans-serif;
+	color: black;
+	font-size: 15px;
+}
+
+.logout-btn:hover {
+	background-color: #f1f1f1;
+}

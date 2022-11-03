@@ -212,3 +212,17 @@
 	border-radius: 10px;
 	color: rgb(153, 153, 217);
 }
+
+.play-button-wrapper {
+	padding-top: 45%;
+}
+
+.play-button {
+	font-size: 40px;
+	color: rgb(153, 153, 217);
+	background-color: transparent;
+}
+
+.play-button:hover {
+	color: white;
+}

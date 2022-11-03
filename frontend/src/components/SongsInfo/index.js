@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-// import { restoreUser } from "../../store/session";
 import { Link } from "react-router-dom";
 import { getAllSongs } from "../../store/songs";
 import { getAllComments } from "../../store/comments";
@@ -9,26 +8,33 @@ import CommentSection from "../CommentSection";
 import CommentCreateForm from "../CommentCreateForm";
 import "./SongsInfo.css";
 import PageNotFound from "../PageNotFound";
-
+import { playAudio } from "../../store/audioplayer";
+import { restoreUser } from "../../store/session";
 const SongsInfo = () => {
 	const { songId } = useParams();
 	const dispatch = useDispatch();
-	const song = useSelector((state) => state.songs[songId]);
+	const song = useSelector((state) => state?.songs[songId]);
 	const sessionUser = useSelector((state) => state?.session?.user);
-	const comments = useSelector((state) => Object.values(state.comments));
+	const comments = useSelector((state) => Object.values(state?.comments));
 
-	// const songUserId = song?.userId;
+	const songButton = useCallback(
+		(song) => {
+			dispatch(playAudio(song));
+		},
+		[dispatch]
+	);
 
 	useEffect(() => {
-		// dispatch(restoreUser());
 		dispatch(getAllSongs());
 		dispatch(getAllComments(song?.id));
+		dispatch(restoreUser());
 	}, [dispatch, song?.id]);
 
 	if (!sessionUser) {
 		return <PageNotFound />;
 	}
 
+	console.log(song?.userId, sessionUser?.user?.id);
 	return (
 		<div className="song-info-background">
 			<div className="song-info-page">
@@ -39,7 +45,7 @@ const SongsInfo = () => {
 							<p>{song?.description}</p>
 						</div>
 						<div>
-							{song?.userId === sessionUser?.user?.id && (
+							{song && sessionUser && song?.userId === sessionUser?.user?.id && (
 								<div className="song-edit-delete-btns">
 									<Link className="song-edit-btn" to={`/songs/${songId}/edit`}>
 										Edit
@@ -58,7 +64,16 @@ const SongsInfo = () => {
 						<div
 							className="song-img-wrapper"
 							style={{ backgroundImage: "url(" + song?.previewImage + ")" }}
-						></div>
+						>
+							<div id="play-button-songinfo">
+								<button
+									className="play-button"
+									onClick={() => songButton(song)}
+								>
+									<i className="fa-solid fa-play"></i>
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div id="comments-song">

@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
+import "./demobutton.css";
 
 const DemoUser = () => {
 	const dispatch = useDispatch();
@@ -13,7 +14,11 @@ const DemoUser = () => {
 		e.preventDefault();
 		return dispatch(login(user));
 	};
-	return <button onClick={handleClick}>Demo</button>;
+	return (
+		<button className="demo-btn" onClick={handleClick}>
+			Demo
+		</button>
+	);
 };
 
 export default DemoUser;

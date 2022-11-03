@@ -137,3 +137,8 @@
 	flex-direction: column;
 	width: 72%;
 }
+
+#play-button-songinfo {
+	padding-top: 45%;
+	padding-left: 45%;
+}

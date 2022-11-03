@@ -24,8 +24,10 @@ const UploadSongPage = () => {
 		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/random.jpeg",
 		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/twice-regal.jpeg",
 	];
-	const random = images[Math.floor(Math.random() * images.length)];
 
+	// const random = images[Math.floor(Math.random() * images.length)];
+
+	const random = Math.floor(Math.random() * images.length);
 	if (!sessionUser) {
 		return <PageNotFound />;
 	}
@@ -34,6 +36,11 @@ const UploadSongPage = () => {
 		e.preventDefault();
 
 		setErrors([]);
+
+		if (imageUrl)
+			setImageUrl(
+				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/image-not-found.jpeg"
+			);
 
 		const newSong = {
 			userId,
@@ -119,7 +126,7 @@ const UploadSongPage = () => {
 				</div>
 				<div className="upload-form-wrapper-right">
 					<div className="upload-img-wrapper">
-						<img src={random} alt="twice-upload-img" />
+						<img src={images[random]} alt="twice-upload-img" />
 					</div>
 				</div>
 			</div>

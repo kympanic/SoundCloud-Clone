@@ -1,12 +1,10 @@
-/* .comments-container {
-	border: 2px orange solid;
-} */
-
+.comments-container {
+	font-family: "Montserrat", sans-serif;
+}
 .comments-user-body {
-	/* border: 2px yellow solid; */
 	padding-right: 15px;
-	display: flex;
 	justify-content: space-between;
-	height: 50px;
-	align-items: center;
+	height: 80px;
+	display: flex;
+	padding-top: 20px;
 }

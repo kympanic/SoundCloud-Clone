@@ -1,4 +1,4 @@
-const PLAY_AUDIO = "player/play-song";
+const PLAY_AUDIO = "player/play-audio";
 
 export const playAudio = (song) => ({
 	type: PLAY_AUDIO,
@@ -13,6 +13,7 @@ const audioPlayerReducer = (state = {}, action) => {
 	switch (action.type) {
 		case PLAY_AUDIO:
 			newState = { ...state, song: action.song };
+
 			return newState;
 		default:
 			return state;

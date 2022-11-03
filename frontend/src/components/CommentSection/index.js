@@ -5,7 +5,6 @@ import "./commentsection.css";
 const CommentSection = ({ songId, comment, sessionUser }) => {
 	const dispatch = useDispatch();
 
-	console.log(comment.User);
 	return (
 		<div className="comments-container">
 			<div className="comments-user-body">

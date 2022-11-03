@@ -1,0 +1,51 @@
+.delete-form-container {
+	padding-top: 40px;
+	min-height: 800px;
+	display: flex;
+	flex-direction: column;
+	background-color: #f6eff1;
+	font-family: "Montserrat", sans-serif;
+	text-align: center;
+}
+
+#delete-song-wrapper {
+	margin-left: 14%;
+	margin-right: 14%;
+	min-height: 800px;
+	background-color: white;
+}
+
+#delete-song-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: white;
+	height: 400px;
+	width: 100%;
+	background-image: url("https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/wp3544116-bts-desktop-wallpapers.jpg");
+}
+
+#delete-song-title {
+	padding-top: 40px;
+	font-size: 40px;
+	padding-bottom: 40px;
+}
+
+#delete-song-name {
+	padding-bottom: 40px;
+}
+
+#delete-btn {
+	padding: 10px;
+	border: 2px solid rgb(153, 153, 217);
+	background-color: rgb(153, 153, 217);
+	color: white;
+	font-size: 20px;
+	border-radius: 10px;
+	margin-right: 20px;
+}
+
+#delete-btn:hover {
+	background-color: white;
+	color: rgb(153, 153, 217);
+}

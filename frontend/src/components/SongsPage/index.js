@@ -1,14 +1,21 @@
 import "./SongsPage.css";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSongs } from "../../store/songs";
 import { Link } from "react-router-dom";
 import PageNotFound from "../PageNotFound";
-
+import { playAudio } from "../../store/audioplayer";
 const SongsPage = () => {
 	const dispatch = useDispatch();
 	const allSongs = useSelector((state) => Object.values(state.songs));
 	const sessionUser = useSelector((state) => state.session?.user);
+
+	const songButton = useCallback(
+		(song) => {
+			dispatch(playAudio(song));
+		},
+		[dispatch]
+	);
 	useEffect(() => {
 		dispatch(getAllSongs());
 	}, [dispatch]);
@@ -28,7 +35,16 @@ const SongsPage = () => {
 							<div
 								className="card-img-wrapper"
 								style={{ backgroundImage: "url(" + song?.previewImage + ")" }}
-							></div>
+							>
+								<div className="play-button-wrapper">
+									<button
+										className="play-button"
+										onClick={() => songButton(song)}
+									>
+										<i className="fa-solid fa-play"></i>
+									</button>
+								</div>
+							</div>
 							<Link className="song-link-text" to={`/songs/${song.id}`}>
 								<p>{song.title}</p>
 							</Link>

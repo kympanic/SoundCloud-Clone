@@ -1,13 +1,16 @@
 import "./HomePage.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Modal } from "../../context/Modal";
 import SearchBar from "../SearchBar/index";
 import LoginForm from "../LoginFormModal/LoginForm";
 import "./HomePage.css";
 import SignUpForm from "../SignUpFormModal/SignUpForm";
+import { playAudio } from "../../store/audioplayer";
+
 const HomePage = () => {
+	const dispatch = useDispatch();
 	const history = useHistory();
 	const sessionUser = useSelector((state) => state.session?.user);
 	const allSongs = useSelector((state) => Object.values(state.songs));
@@ -20,6 +23,13 @@ const HomePage = () => {
 		e.preventDefault();
 		history.push("/upload/song");
 	};
+
+	const songButton = useCallback(
+		(song) => {
+			dispatch(playAudio(song));
+		},
+		[dispatch]
+	);
 
 	if (sessionUser) {
 		homeBottom = (
@@ -105,7 +115,16 @@ const HomePage = () => {
 								<div
 									className="homepage-card-img-wrapper"
 									style={{ backgroundImage: "url(" + song?.previewImage + ")" }}
-								></div>
+								>
+									<div className="play-button-wrapper">
+										<button
+											className="play-button"
+											onClick={() => songButton(song)}
+										>
+											<i className="fa-solid fa-play"></i>
+										</button>
+									</div>
+								</div>
 								<p className="homepage-songcard-text">{song?.title}</p>
 							</li>
 						))}

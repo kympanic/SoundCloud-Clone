@@ -1,4 +1,4 @@
-.nav-login-button {
+.signup-button {
 	font-family: "Montserrat", sans-serif;
 	font-size: 15px;
 	height: 50px;
@@ -7,6 +7,6 @@
 	background-color: transparent;
 }
 
-.nav-login-button:hover {
+.signup-button:hover {
 	color: white;
 }

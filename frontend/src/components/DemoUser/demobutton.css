@@ -1,4 +1,4 @@
-.nav-login-button {
+.demo-btn {
 	font-family: "Montserrat", sans-serif;
 	font-size: 15px;
 	height: 50px;
@@ -7,6 +7,6 @@
 	background-color: transparent;
 }
 
-.nav-login-button:hover {
+.demo-btn:hover {
 	color: white;
 }
