@@ -36,7 +36,6 @@ router.post("/", validateLogin, async (req, res, next) => {
 
 	let userToken = token.split(".")[2];
 
-	console.log(token);
 	const payload = {
 		id: user.id,
 		firstName: user.firstName,

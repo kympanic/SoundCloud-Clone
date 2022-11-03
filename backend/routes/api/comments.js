@@ -4,9 +4,12 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { Comment } = require("../../db/models");
+// const { Comment } = require("../../db/models");
 const router = express.Router();
 const { validateComments } = require("../../middleware/validationCheck");
+// const { User, Song, Album, Comment } = db;
+const db = require("../../db/models");
+const { User, Song, Album, Comment } = db;
 
 //edit a comment
 router.put(
@@ -17,7 +20,7 @@ router.put(
 	async (req, res) => {
 		const { commentId } = req.params;
 		const { user } = req;
-		const { body } = req.body;
+		const { body, songId } = req.body;
 		const editedComment = await Comment.findByPk(commentId);
 		if (!editedComment) {
 			return res.status(404).json({
@@ -37,14 +40,17 @@ router.put(
 			editedComment.body = body;
 		}
 		await editedComment.save();
-		res.json(editedComment);
+		const comments = await Comment.findAll({
+			where: { songId: songId },
+		});
 	}
 );
 
 //delete a comment
 router.delete("/:commentId", requireAuth, restoreUser, async (req, res) => {
-	const { commentId } = req.params;
+	// const { commentId } = req.params;
 	const { user } = req;
+	const { commentId, songId } = req.body;
 	const deletedComment = await Comment.findByPk(commentId);
 	//check to see if comment exists
 	if (!deletedComment) {
@@ -64,10 +70,18 @@ router.delete("/:commentId", requireAuth, restoreUser, async (req, res) => {
 	}
 
 	await deletedComment.destroy();
-	res.json({
-		message: "Successfully deleted",
-		statusCode: 200,
+
+	const comments = await Comment.findAll({
+		where: { songId: songId },
+		include: [
+			{
+				model: User,
+			},
+		],
+		order: [["createdAt", "DESC"]],
 	});
+
+	return res.json({ comments });
 });
 
 module.exports = router;

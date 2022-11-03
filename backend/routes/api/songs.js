@@ -135,22 +135,24 @@ router.post(
 		const { user } = req;
 		const songId = parseInt(req.params.songId);
 		const { body } = req.body;
-		const currentSong = await Song.findByPk(songId);
 
-		if (!currentSong) {
-			res.statusCode = 404;
-			return res.json({
-				message: "Song couldn't be found",
-				statusCode: 404,
-			});
-		}
-
-		const newComment = await Comment.create({
+		await Comment.create({
+			body,
 			userId: user.id,
 			songId,
-			body,
 		});
-		res.json(newComment);
+
+		const comments = await Comment.findAll({
+			where: { songId: songId },
+			include: [
+				{
+					model: User,
+				},
+			],
+			order: [["createdAt", "DESC"]],
+		});
+
+		return res.json({ comments });
 	}
 );
 

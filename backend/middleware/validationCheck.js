@@ -54,6 +54,11 @@ const validateSong = [
 		.withMessage("Audio is required")
 		.notEmpty()
 		.withMessage("Audio is required"),
+	// check("previewImage")
+	// 	.exists({ checkFalsy: true })
+	// 	.withMessage("Image is required")
+	// 	.notEmpty()
+	// 	.withMessage("Image is required"),
 	handleValidationErrors,
 ];
 
