@@ -48,9 +48,9 @@ const SongsPage = () => {
 							<Link className="song-link-text" to={`/songs/${song.id}`}>
 								<p>{song.title}</p>
 							</Link>
-							<Link className="song-link-text" to={`/users/${song?.User?.id}`}>
+							{/* <Link className="song-link-text" to={`/users/${song?.User?.id}`}>
 								<p>{song?.User?.username}</p>
-							</Link>
+							</Link> */}
 						</li>
 					))}
 				</div>
