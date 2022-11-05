@@ -5,11 +5,12 @@ export const playAudio = (song) => ({
 	song,
 });
 
-let newState = {
-	song: null,
-};
+// let newState = {
+// 	song: null,
+// };
 
 const audioPlayerReducer = (state = {}, action) => {
+	let newState;
 	switch (action.type) {
 		case PLAY_AUDIO:
 			newState = { ...state, song: action.song };

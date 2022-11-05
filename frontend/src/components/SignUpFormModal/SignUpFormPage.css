@@ -1,0 +1,56 @@
+.signup-form {
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+	align-items: center;
+	border: 2px black solid;
+	font-family: "Montserrat", sans-serif;
+	width: 600px;
+	height: 700px;
+	text-align: center;
+	margin: 0;
+}
+
+#signup-form-pic {
+	background-image: url(https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/logo.png);
+	height: 100px;
+	width: 200px;
+	background-position: center;
+	background-repeat: no-repeat;
+	object-fit: cover;
+}
+
+#signup-form-title {
+	margin-bottom: 20px;
+	margin-top: 0px;
+}
+
+#signup-form-btn {
+	margin-top: 10px;
+	width: 100px;
+	height: 50px;
+	background-color: lavender;
+	font-size: 17px;
+}
+
+.signup-input-container {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	margin-bottom: 8px;
+	/* width: 80%; */
+	margin-top: 8px;
+}
+
+form .signup-input-container input {
+	border: 2px solid black;
+	padding: 6px 5px;
+	border-radius: 5px;
+	outline: none;
+	width: 500px;
+}
+
+#login-form-errors {
+	margin: 0px;
+	color: red;
+}

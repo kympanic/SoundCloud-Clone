@@ -22,9 +22,9 @@ function LoginForm() {
 	};
 
 	return (
-		<form className="forms" onSubmit={handleSubmit}>
-			<h1>Login</h1>
-
+		<form className="login-form" onSubmit={handleSubmit}>
+			<div id="login-form-pic"></div>
+			<h1 id="login-form-title">Login</h1>
 			<div className="input-container">
 				<label htmlFor="credential">Username or Email</label>
 				<input
@@ -43,8 +43,8 @@ function LoginForm() {
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 			</div>
-			<button>Log In</button>
-			<p>{errors}</p>
+			<button id="login-form-btn">Log In</button>
+			<p id="login-form-errors">{errors}</p>
 		</form>
 	);
 }

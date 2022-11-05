@@ -34,7 +34,6 @@ const SongsInfo = () => {
 		return <PageNotFound />;
 	}
 
-	console.log(song?.userId, sessionUser?.user?.id);
 	return (
 		<div className="song-info-background">
 			<div className="song-info-page">
@@ -42,6 +41,7 @@ const SongsInfo = () => {
 					<div id="song-container-left">
 						<div className="song-text">
 							<h1>{song?.title}</h1>
+							<p id="song-info-username">{song?.User?.username}</p>
 							<p>{song?.description}</p>
 						</div>
 						<div>

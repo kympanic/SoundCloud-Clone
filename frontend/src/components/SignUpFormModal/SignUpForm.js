@@ -17,8 +17,6 @@ function SignUpForm() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	// if (sessionUser) return <Redirect to="/profile" />;
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
@@ -45,88 +43,79 @@ function SignUpForm() {
 	let errorList = Object.values(errors);
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<h1>SignUp</h1>
-			<div className="input-container">
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
+		<form className="signup-form" onSubmit={handleSubmit}>
+			<div id="signup-form-pic"></div>
+			<h1 id="signup-form-title">SignUp</h1>
+			<div className="signup-input-container">
+				<label>Email</label>
+				<input
+					type="text"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					required
+				/>
 			</div>
-			<div className="input-container">
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
+			<div className="signup-input-container">
+				<label>Username</label>
+				<input
+					type="text"
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+					required
+				/>
 			</div>
-			<div className="input-container">
-				<label>
-					First Name
-					<input
-						type="text"
-						value={firstName}
-						onChange={(e) => setFirstname(e.target.value)}
-						required
-					/>
-				</label>
+			<div className="signup-input-container">
+				<label>First Name</label>
+				<input
+					type="text"
+					value={firstName}
+					onChange={(e) => setFirstname(e.target.value)}
+					required
+				/>
 			</div>
-			<div className="input-container">
-				<label>
-					Last Name
-					<input
-						type="text"
-						value={lastName}
-						onChange={(e) => setLastname(e.target.value)}
-						required
-					/>
-				</label>
+			<div className="signup-input-container">
+				<label>Last Name</label>
+				<input
+					type="text"
+					value={lastName}
+					onChange={(e) => setLastname(e.target.value)}
+					required
+				/>
 			</div>
-			<div className="input-container">
-				<label>
-					Profile Image
-					<input
-						type="url"
-						value={profileImg}
-						onChange={(e) => setProfileImg(e.target.value)}
-					/>
-				</label>
+			<div className="signup-input-container">
+				<label>Profile Image</label>
+				<input
+					type="url"
+					value={profileImg}
+					onChange={(e) => setProfileImg(e.target.value)}
+				/>
 			</div>
-			<div className="input-container">
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
+			<div className="signup-input-container">
+				<label>Password</label>
+				<input
+					type="password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					required
+				/>
 			</div>
-			<div className="input-container">
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
+			<div className="signup-input-container">
+				<label>Confirm Password</label>
+				<input
+					type="password"
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
+					required
+				/>
 			</div>
-			<button type="submit">Sign Up</button>
+			<button id="signup-form-btn" type="submit">
+				Sign Up
+			</button>
 			<ul>
 				{errorList.map((error, idx) => (
-					<li key={idx}>{error}</li>
+					<li id="login-form-errors" key={idx}>
+						{error}
+					</li>
 				))}
 			</ul>
 		</form>
