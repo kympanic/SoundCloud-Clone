@@ -26,10 +26,10 @@ KWave is a SoundCloud clone with a Kpop design theme. Users are able to login or
 - Continuous track play
 - Spacebar to pause
 
-To-Do:
- Index views for likes, followers, and followees
- Playlists
- Artists
- Albums
- SearchBar
- Profile Page
+## `To-Do:`
+- Index views for likes, followers, and followees
+- Playlists
+- Artists
+- Albums
+- SearchBar
+- Profile Page
