@@ -1,8 +1,5 @@
 "use strict";
-let options = {};
-if (process.env.NODE_ENV === "production") {
-	options.schema = process.env.SCHEMA; // define your schema in options object
-}
+
 const demoPlaylist = [
 	{
 		userId: 1,
@@ -25,13 +22,10 @@ const demoPlaylist = [
 
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		options.tableName = "Playlists";
-		await queryInterface.bulkInsert(options, "Playlists", demoPlaylist, {});
+		await queryInterface.bulkInsert("Playlists", demoPlaylist, {});
 	},
 
 	async down(queryInterface, Sequelize) {
-		options.tableName = "Playlists";
-		return queryInterface.bulkDelete(options);
-		// await queryInterface.bulkDelete("Playlists", null, {});
+		await queryInterface.bulkDelete("Playlists", null, {});
 	},
 };
