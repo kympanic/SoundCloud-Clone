@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"description": "[API Documentation](https://github.com/kympanic/SoundCloud-Clone/wiki/API-Documentation)",
 	"main": "index.js",
+	"engines": {
+		"node": "16.17.0"
+	},
 	"scripts": {
 		"install": "npm --prefix backend install backend",
 		"dev:backend": "npm install --prefix backend start",
