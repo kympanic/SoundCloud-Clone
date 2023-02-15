@@ -7,7 +7,7 @@
 		"node": "16.17.0"
 	},
 	"scripts": {
-		"heroku-postbuild": "npm run build --prefix frontend",
+		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
 		"install": "npm --prefix backend install backend",
 		"dev:backend": "npm install --prefix backend start",
 		"sequelize": "npm run --prefix backend sequelize",
