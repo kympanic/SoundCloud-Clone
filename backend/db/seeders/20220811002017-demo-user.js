@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 
 const demoUsers = [
 	{
-		firstName: "Daniel",
+		firstName: "Dan",
 		lastName: "Yoo",
 		email: "demo@gmail.com",
 		username: "Panicky",
