@@ -12,10 +12,10 @@ const demoUsers = [
 			"https://dummyimage.com/600x400/8f368f/fff.png&text=Profile+1",
 	},
 	{
-		firstName: "James",
-		lastName: "Ra",
-		email: "army@gmail.com",
-		username: "SejunRa",
+		firstName: "Amy",
+		lastName: "Leang",
+		email: "amyleang@gmail.com",
+		username: "AmyLeang",
 		hashedPassword: bcrypt.hashSync("password2"),
 		previewImage:
 			"https://dummyimage.com/600x400/3d3ba1/fff.png&text=Profile+2",
