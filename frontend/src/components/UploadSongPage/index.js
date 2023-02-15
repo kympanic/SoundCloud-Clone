@@ -36,10 +36,10 @@ const UploadSongPage = () => {
 
 		setErrors([]);
 
-		if (imageUrl === "" || imageUrl === null)
-			setImageUrl(
-				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/image-not-found.jpeg"
-			);
+		// if (imageUrl === "" || imageUrl === null)
+		// 	setImageUrl(
+		// 		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/image-not-found.jpeg"
+		// 	);
 
 		const newSong = {
 			userId,

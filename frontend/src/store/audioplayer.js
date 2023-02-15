@@ -5,10 +5,6 @@ export const playAudio = (song) => ({
 	song,
 });
 
-// let newState = {
-// 	song: null,
-// };
-
 const audioPlayerReducer = (state = {}, action) => {
 	let newState;
 	switch (action.type) {

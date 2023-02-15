@@ -4,11 +4,12 @@
 	"description": "[API Documentation](https://github.com/kympanic/SoundCloud-Clone/wiki/API-Documentation)",
 	"main": "index.js",
 	"scripts": {
-		"heroku-postbuild": "npm run build --prefix frontend",
+		"render-postbuild": "npm run build --prefix frontend",
 		"install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
 		"sequelize": "npm run --prefix backend sequelize",
 		"sequelize-cli": "npm run --prefix backend sequelize-cli",
-		"start": "npm start --prefix backend"
+		"start": "npm start --prefix backend",
+		"build": "npm run build --prefix backend"
 	},
 	"repository": {
 		"type": "git",
@@ -20,5 +21,8 @@
 	"bugs": {
 		"url": "https://github.com/kympanic/SoundCloud-Clone/issues"
 	},
-	"homepage": "https://github.com/kympanic/SoundCloud-Clone#readme"
+	"homepage": "https://github.com/kympanic/SoundCloud-Clone#readme",
+	"dependencies": {
+		"zipcode-city-distance": "^1.0.6"
+	}
 }

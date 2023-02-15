@@ -88,11 +88,13 @@ const HomePage = () => {
 		<div className="home-page-background">
 			<div className="home-page-wrapper">
 				<div className="header-container">
-					<h1 id="header-title">What's next in Kpop is first on KWave</h1>
+					<h1 id="header-title">
+						What's next in Kpop is first on KWave
+					</h1>
 					<p id="header-p">
-						Upload your first track and begin your journey. KWave gives you
-						space to create, find your fans, and connect with other Kpop
-						enthusiasts.
+						Upload your first track and begin your journey. KWave
+						gives you space to create, find your fans, and connect
+						with other Kpop enthusiasts.
 					</p>
 					<button id="header-btn" onClick={handleClick}>
 						Upload Today
@@ -102,7 +104,10 @@ const HomePage = () => {
 					<div className="homepage-search-wrapper">
 						<SearchBar />
 						<p id="homepage-or">or</p>
-						<button id="homepage-search-upload-btn" onClick={handleClick}>
+						<button
+							id="homepage-search-upload-btn"
+							onClick={handleClick}
+						>
 							Upload Your Own
 						</button>
 					</div>
@@ -114,7 +119,10 @@ const HomePage = () => {
 							<li key={song.id} className="homepage-song-card">
 								<div
 									className="homepage-card-img-wrapper"
-									style={{ backgroundImage: "url(" + song?.previewImage + ")" }}
+									style={{
+										backgroundImage:
+											"url(" + song?.previewImage + ")",
+									}}
 								>
 									<div className="play-button-wrapper">
 										<button
@@ -125,7 +133,9 @@ const HomePage = () => {
 										</button>
 									</div>
 								</div>
-								<p className="homepage-songcard-text">{song?.title}</p>
+								<p className="homepage-songcard-text">
+									{song?.title}
+								</p>
 							</li>
 						))}
 					</div>
@@ -135,15 +145,21 @@ const HomePage = () => {
 					<div className="homepage-middle-right-container">
 						<h2 id="homepage-middle-title">Never Stop Listening</h2>
 						<p id="homepage-middle-p">
-							Kwave is available on Web, iOS, Android, Sonos, Chromecast, and
-							Xbox One
+							Kwave is available on Web, iOS, Android, Sonos,
+							Chromecast, and Xbox One
 						</p>
 						<div id="homepage-middle-icons">
 							<img
+								onClick={() =>
+									history.push("/ourgroupisthebest")
+								}
 								src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
 								alt="google-icon"
 							/>
 							<img
+								onClick={() =>
+									history.push("/ourgroupisthebest")
+								}
 								src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
 								alt="apple-icon"
 							/>
@@ -151,9 +167,12 @@ const HomePage = () => {
 					</div>
 				</div>
 				<div className="homepage-bottom-container">
-					<p id="homepage-bottom-title">Thanks for listening. Now join in.</p>
+					<p id="homepage-bottom-title">
+						Thanks for listening. Now join in.
+					</p>
 					<p id="homepage-bottom-content">
-						Save tracks, follow artists and build playlists. All for free.
+						Save tracks, follow artists and build playlists. All for
+						free.
 					</p>
 					{homeBottom}
 				</div>
