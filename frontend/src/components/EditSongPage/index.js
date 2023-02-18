@@ -78,12 +78,16 @@ const EditSongPage = () => {
 								/>
 							</div>
 							<div className="edit-input-container">
-								<label htmlFor="description">Description:</label>
+								<label htmlFor="description">
+									Description:
+								</label>
 								<input
 									type="text"
 									name="description"
 									value={description}
-									onChange={(e) => setDescription(e.target.value)}
+									onChange={(e) =>
+										setDescription(e.target.value)
+									}
 								/>
 							</div>
 							<div className="edit-input-container">
@@ -101,14 +105,19 @@ const EditSongPage = () => {
 									type="url"
 									value={imageUrl}
 									name="imageUrl"
-									onChange={(e) => setImageUrl(e.target.value)}
+									onChange={(e) =>
+										setImageUrl(e.target.value)
+									}
 								/>
 							</div>
 							<div className="edit-button-container">
 								<button id="edit-submit-button" type="submit">
 									Edit
 								</button>
-								<button id="edit-cancel-button" onClick={handleCancel}>
+								<button
+									id="edit-cancel-button"
+									onClick={handleCancel}
+								>
 									Cancel
 								</button>
 							</div>
@@ -128,67 +137,6 @@ const EditSongPage = () => {
 			</div>
 		)
 	);
-
-	// return (
-	// 	sessionUser && (
-	// 		<form onSubmit={handleSubmit}>
-	// 			<h1>Edit Song</h1>
-	// 			<div className="input-container">
-	// 				<label>
-	// 					Title
-	// 					<input
-	// 						type="text"
-	// 						value={title}
-	// 						onChange={(e) => setTitle(e.target.value)}
-	// 						// required
-	// 					/>
-	// 				</label>
-	// 			</div>
-	// 			<div className="input-container">
-	// 				<label>
-	// 					Description
-	// 					<input
-	// 						type="text"
-	// 						value={description}
-	// 						onChange={(e) => setDescription(e.target.value)}
-	// 						// required
-	// 					/>
-	// 				</label>
-	// 			</div>
-	// 			<div className="input-container">
-	// 				<label>
-	// 					Audio Url
-	// 					<input
-	// 						type="url"
-	// 						value={url}
-	// 						onChange={(e) => setUrl(e.target.value)}
-	// 						// required
-	// 					/>
-	// 				</label>
-	// 			</div>
-	// 			<div className="input-container">
-	// 				<label>
-	// 					Image Url
-	// 					<input
-	// 						type="url"
-	// 						value={imageUrl}
-	// 						onChange={(e) => setImageUrl(e.target.value)}
-	// 						// required
-	// 					/>
-	// 				</label>
-	// 			</div>
-	// 			<div>
-	// 				<button type="submit">Edit Song</button>
-	// 				<button onClick={handleCancel}>Cancel</button>
-	// 			</div>
-	// 			<ul>
-	// 				{errors.map((error, idx) => (
-	// 					<li key={idx}>{error}</li>
-	// 				))}
-	// 			</ul>
-	// 		</form>
-	// 	)
-	// );
 };
 
 export default EditSongPage;

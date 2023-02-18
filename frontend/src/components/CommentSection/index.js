@@ -1,9 +1,18 @@
 import { removeComment } from "../../store/comments";
 import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import EditCommentModal from "../EditCommentModal/EditCommentModal";
 import "./commentsection.css";
+import { useState } from "react";
 
 const CommentSection = ({ songId, comment, sessionUser }) => {
 	const dispatch = useDispatch();
+	const [isOpenEdit, setIsOpenEdit] = useState(false);
+
+	console.log(comment, "this is this comment");
+	console.log(sessionUser, "this is the session user");
+	console.log(songId, "this is the song id");
 
 	return (
 		<div className="comments-container">
@@ -18,10 +27,27 @@ const CommentSection = ({ songId, comment, sessionUser }) => {
 							className="fas fa-trash-alt delete__btn"
 							onClick={() =>
 								dispatch(
-									removeComment(songId, comment?.id, sessionUser?.user?.id)
+									removeComment(
+										songId,
+										comment?.id,
+										sessionUser?.user?.id
+									)
 								)
 							}
 						></i>
+						<FontAwesomeIcon
+							className="comment-edit-btn"
+							icon={faPenToSquare}
+							onClick={() => setIsOpenEdit(true)}
+						/>
+						{isOpenEdit && (
+							<EditCommentModal
+								setIsOpen={setIsOpenEdit}
+								comment={comment}
+								sessionUser={sessionUser}
+								songId={songId}
+							/>
+						)}
 					</div>
 				)}
 			</div>

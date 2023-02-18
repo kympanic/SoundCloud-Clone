@@ -18,9 +18,8 @@ router.put(
 	restoreUser,
 	validateComments,
 	async (req, res) => {
-		const { commentId } = req.params;
 		const { user } = req;
-		const { body, songId } = req.body;
+		const { body, songId, commentId } = req.body;
 		const editedComment = await Comment.findByPk(commentId);
 		if (!editedComment) {
 			return res.status(404).json({
