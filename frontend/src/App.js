@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage";
 import SongsPage from "./components/SongsPage";
 import SongsInfo from "./components/SongsInfo";
 import EditSongPage from "./components/EditSongPage";
+import EditCommentPage from "./components/EditCommentPage";
 import PageNotFound from "./components/PageNotFound";
 import UploadSongPage from "./components/UploadSongPage";
 import DeleteSongPage from "./components/DeleteSongPage";
@@ -38,6 +39,9 @@ function App() {
 						</Route>
 						<Route exact path="/songs/:songId/edit">
 							<EditSongPage />
+						</Route>
+						<Route exact path="/comments/:commentId/edit">
+							<EditCommentPage />
 						</Route>
 						<Route exact path="/upload/song">
 							<UploadSongPage />

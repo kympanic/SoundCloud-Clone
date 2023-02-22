@@ -11,7 +11,6 @@ const EditSongPage = () => {
 	const history = useHistory();
 
 	const { songId } = useParams();
-	//took out one ? in front of the session
 	const sessionUser = useSelector((state) => state.session?.user);
 	const song = useSelector((state) => state.songs[songId]);
 

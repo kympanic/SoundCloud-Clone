@@ -44,6 +44,7 @@ export const editComment = (comment) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(getComments(data.comments));
+		return res;
 	}
 };
 
