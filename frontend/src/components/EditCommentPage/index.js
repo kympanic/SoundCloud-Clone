@@ -18,20 +18,9 @@ const EditCommentPage = () => {
 		return parseInt(comment?.id) === parseInt(commentId);
 	});
 
-	// const completedTriviaPackages = allUserTriviaPackages.filter(
-	// 	(triviapackage) => {
-	// 		return triviapackage?.trivias?.length >= 14;
-	// 	}
-	// );
 	const [body, setBody] = useState(selectedComment[0]?.body);
-
 	const [errors, setErrors] = useState([]);
-	console.log(typeof commentId, typeof commentId);
-	console.log(comments, "this is the comments");
-	console.log(selectedComment, "this should be the right comment");
-	console.log(songId, "hello");
-	console.log(sessionUser, "this is the session user");
-	// console.log(comment, "this is the comment");
+
 	useEffect(() => {
 		dispatch(getAllComments(songId));
 	}, [dispatch]);
