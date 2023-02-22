@@ -124,7 +124,6 @@ module.exports = (sequelize, DataTypes) => {
 						"createdAt",
 						"updatedAt",
 						"isArtist",
-						"previewImage",
 					],
 				},
 			},
