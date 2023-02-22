@@ -66,9 +66,7 @@ const UploadSongPage = () => {
 
 	return (
 		<div className="upload-page-background">
-			<div id="upload-form-text">
-				<h2>Upload Your New Song</h2>
-			</div>
+			<h2 id="upload-form-text">Upload Your New Song</h2>
 			<div className="upload-form-container">
 				<div className="upload-form-wrapper-left">
 					<form onSubmit={handleSubmit}>

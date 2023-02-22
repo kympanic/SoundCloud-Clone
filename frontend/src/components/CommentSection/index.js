@@ -32,6 +32,7 @@ const CommentSection = ({ songId, comment, sessionUser }) => {
 				{sessionUser?.user?.id === comment?.User?.id && (
 					<div className="comments-buttons">
 						<i
+							id="comment-trash-can"
 							className="fas fa-trash-alt delete__btn"
 							onClick={() =>
 								dispatch(
@@ -48,14 +49,6 @@ const CommentSection = ({ songId, comment, sessionUser }) => {
 							icon={faPenToSquare}
 							onClick={handleClick}
 						/>
-						{/* {isOpenEdit && (
-							<EditCommentModal
-								setIsOpen={setIsOpenEdit}
-								comment={comment}
-								sessionUser={sessionUser}
-								songId={songId}
-							/>
-						)} */}
 					</div>
 				)}
 			</div>

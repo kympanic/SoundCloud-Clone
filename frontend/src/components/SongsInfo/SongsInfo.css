@@ -48,8 +48,8 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 375px;
-	width: 375px;
+	height: 250px;
+	width: 250px;
 	border-radius: 5px;
 	position: relative;
 	margin-top: 40px;
@@ -131,16 +131,10 @@
 	display: flex;
 }
 
-#comments-right-area {
-	border-left: grey solid 1px;
-	background-color: white;
-	width: 350px;
-}
-
 .user-comments-section {
 	display: flex;
 	flex-direction: column;
-	width: 72%;
+	width: 100%;
 }
 
 #play-button-songinfo {

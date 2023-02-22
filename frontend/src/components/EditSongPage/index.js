@@ -32,7 +32,6 @@ const EditSongPage = () => {
 		e.preventDefault();
 
 		setErrors([]);
-
 		const editedSong = {
 			...song,
 			title,

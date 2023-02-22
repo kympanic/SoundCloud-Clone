@@ -41,29 +41,39 @@ const SongsInfo = () => {
 					<div id="song-container-left">
 						<div className="song-text">
 							<h1>{song?.title}</h1>
-							<p id="song-info-username">{song?.User?.username}</p>
+							<p id="song-info-username">
+								Creator: {song?.User?.username}
+							</p>
 							<p>{song?.description}</p>
 						</div>
 						<div>
-							{song && sessionUser && song?.userId === sessionUser?.user?.id && (
-								<div className="song-edit-delete-btns">
-									<Link className="song-edit-btn" to={`/songs/${songId}/edit`}>
-										Edit
-									</Link>
-									<Link
-										className="song-edit-btn"
-										to={`/songs/${songId}/delete`}
-									>
-										Delete
-									</Link>
-								</div>
-							)}
+							{song &&
+								sessionUser &&
+								song?.userId === sessionUser?.user?.id && (
+									<div className="song-edit-delete-btns">
+										<Link
+											className="song-edit-btn"
+											to={`/songs/${songId}/edit`}
+										>
+											Edit
+										</Link>
+										<Link
+											className="song-edit-btn"
+											to={`/songs/${songId}/delete`}
+										>
+											Delete
+										</Link>
+									</div>
+								)}
 						</div>
 					</div>
 					<div id="song-container-right">
 						<div
 							className="song-img-wrapper"
-							style={{ backgroundImage: "url(" + song?.previewImage + ")" }}
+							style={{
+								backgroundImage:
+									"url(" + song?.previewImage + ")",
+							}}
 						>
 							<div id="play-button-songinfo">
 								<button
@@ -78,7 +88,10 @@ const SongsInfo = () => {
 				</div>
 				<div id="comments-song">
 					<div className="comments-container">
-						<CommentCreateForm songId={songId} sessionUser={sessionUser} />
+						<CommentCreateForm
+							songId={songId}
+							sessionUser={sessionUser}
+						/>
 						<div id="song-icons-bar">
 							<div id="song-icons-buttons">
 								<button className="song-btns">
@@ -121,11 +134,6 @@ const SongsInfo = () => {
 										songId={songId}
 									/>
 								))}
-						</div>
-						<div id="comments-right-area">
-							<div>
-								<p>placeholder</p>
-							</div>
 						</div>
 					</div>
 				</div>

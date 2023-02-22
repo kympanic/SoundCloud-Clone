@@ -8,3 +8,28 @@
 	display: flex;
 	padding-top: 20px;
 }
+
+.comments-buttons {
+	width: 100px;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.comment-edit-btn {
+	font-size: 23px;
+	cursor: pointer;
+}
+#comment-trash-can {
+	font-size: 23px;
+	cursor: pointer;
+}
+
+.comment-edit-btn:hover {
+	transform: scale(1.2);
+	color: pink;
+}
+#comment-trash-can:hover {
+	transform: scale(1.2);
+	color: pink;
+}

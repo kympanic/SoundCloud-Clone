@@ -4,27 +4,30 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	height: 1100px;
 }
 
 .upload-form-container {
 	background-color: white;
+	border-radius: 20px;
 	margin-left: 14%;
 	margin-right: 14%;
 	margin-top: 30px;
 	border: 2px solid #f6eff1;
 	padding-top: 100px;
+	margin-bottom: 100px;
 	height: 800px;
 	display: flex;
-	/* align-items: center; */
+	justify-content: space-between;
 }
 
 #upload-form-text {
 	font-size: 35px;
+	text-align: center;
 	margin-top: 30px;
 	margin-bottom: 25px;
 	padding-top: 100px;
 	padding-bottom: 30px;
-	margin-left: 520px;
 }
 
 .upload-input-container {
@@ -48,13 +51,19 @@ form .upload-input-container textarea {
 }
 
 .upload-img-wrapper img {
-	width: 500px;
-	height: 600px;
+	width: 400px;
+	height: 400px;
 	object-fit: cover;
-	margin-left: 150px;
+	border-radius: 20px;
 	border-left: solid #f6eff1 2px;
-	padding-left: 90px;
-	margin-left: 50px;
+}
+
+.upload-form-wrapper-right {
+	display: flex;
+	justify-content: center;
+	margin-right: 10%;
+	align-items: center;
+	margin-bottom: 10%;
 }
 
 .upload-button-container {
@@ -72,6 +81,7 @@ form .upload-input-container textarea {
 	margin-right: 50px;
 	border-radius: 10px;
 	width: 100px;
+	cursor: pointer;
 }
 
 #upload-submit-button:hover {
