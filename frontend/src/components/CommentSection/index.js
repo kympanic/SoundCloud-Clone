@@ -2,7 +2,6 @@ import { removeComment } from "../../store/comments";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import EditCommentModal from "../EditCommentModal/EditCommentModal";
 import "./commentsection.css";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";

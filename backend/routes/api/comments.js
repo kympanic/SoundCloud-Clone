@@ -37,11 +37,9 @@ router.put(
 		}
 		if (editedComment) {
 			editedComment.body = body;
+			await editedComment.save();
+			res.json(editedComment);
 		}
-		await editedComment.save();
-		const comments = await Comment.findAll({
-			where: { songId: songId },
-		});
 	}
 );
 

@@ -44,16 +44,18 @@ const EditCommentPage = () => {
 		console.log("is this hitting");
 		e.preventDefault();
 
+		setErrors([]);
+
 		const editedReview = {
 			commentId: parseInt(commentId),
 			body,
 			songId,
 		};
+		console.log(editedReview, "this is the new review");
 		await dispatch(editComment(editedReview))
 			.then(() => history.push(`/songs/${songId}`))
 			.catch(async (res) => {
 				const data = await res.json();
-				console.log(data);
 				if (data && data.errors) {
 					let foundErrors = Object.values(data.errors);
 					setErrors(foundErrors);
