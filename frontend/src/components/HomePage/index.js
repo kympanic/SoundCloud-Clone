@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useState, useCallback } from "react";
 import { Modal } from "../../context/Modal";
-import SearchBar from "../SearchBar/index";
 import LoginForm from "../LoginFormModal/LoginForm";
 import "./HomePage.css";
 import SignUpForm from "../SignUpFormModal/SignUpForm";
 import { playAudio } from "../../store/audioplayer";
+import "../SearchBar/searchbar.css";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const HomePage = () => {
 	const allSongs = useSelector((state) => Object.values(state.songs));
 	const [showLoginModal, setShowLoginModal] = useState(false);
 	const [showSignUpModal, setShowSignUpModal] = useState(false);
+	const [query, setQuery] = useState("");
 
 	let homeBottom;
 
@@ -102,7 +103,18 @@ const HomePage = () => {
 				</div>
 				<div className="homepage-song-container">
 					<div className="homepage-search-wrapper">
-						<SearchBar />
+						{/* <SearchBar /> */}
+						<div className="search-container">
+							<input
+								className="search-input"
+								placeholder="Search by title"
+								onChange={(e) => setQuery(e.target.value)}
+							/>
+							<i
+								className="fas fa-search search-btn"
+								style={{ color: "grey" }}
+							></i>
+						</div>
 						<p id="homepage-or">or</p>
 						<button
 							id="homepage-search-upload-btn"
@@ -115,29 +127,49 @@ const HomePage = () => {
 						Hear what is trending for free in the KWave community
 					</p>
 					<div className="homepage-songs-list">
-						{allSongs?.map((song) => (
-							<li key={song.id} className="homepage-song-card">
-								<div
-									className="homepage-card-img-wrapper"
-									style={{
-										backgroundImage:
-											"url(" + song?.previewImage + ")",
-									}}
-								>
-									<div className="play-button-wrapper">
-										<button
-											className="play-button"
-											onClick={() => songButton(song)}
+						{allSongs &&
+							allSongs
+								?.filter((song) => {
+									if (query === "") {
+										return song;
+									} else if (
+										song.title
+											.toLowerCase()
+											.includes(query.toLowerCase())
+									) {
+										return song;
+									}
+								})
+								.map((song) => (
+									<li
+										key={song.id}
+										className="homepage-song-card"
+									>
+										<div
+											className="homepage-card-img-wrapper"
+											style={{
+												backgroundImage:
+													"url(" +
+													song?.previewImage +
+													")",
+											}}
 										>
-											<i className="fa-solid fa-play"></i>
-										</button>
-									</div>
-								</div>
-								<p className="homepage-songcard-text">
-									{song?.title}
-								</p>
-							</li>
-						))}
+											<div className="play-button-wrapper">
+												<button
+													className="play-button"
+													onClick={() =>
+														songButton(song)
+													}
+												>
+													<i className="fa-solid fa-play"></i>
+												</button>
+											</div>
+										</div>
+										<p className="homepage-songcard-text">
+											{song?.title}
+										</p>
+									</li>
+								))}
 					</div>
 				</div>
 				<div className="homepage-middle-container">
