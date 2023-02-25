@@ -5,6 +5,7 @@ import { getAllComments } from "../../store/comments";
 import { editComment } from "../../store/comments";
 import { useDispatch } from "react-redux";
 import PageNotFound from "../PageNotFound";
+import "./editcomment.css";
 
 const EditCommentPage = () => {
 	const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const EditCommentPage = () => {
 	const selectedComment = comments.filter((comment) => {
 		return parseInt(comment?.id) === parseInt(commentId);
 	});
+	const selectedSong = useSelector((state) => state.songs[songId]);
+	console.log(selectedSong, "this is the song");
 
 	const [body, setBody] = useState(selectedComment[0]?.body);
 	const [errors, setErrors] = useState([]);
@@ -58,50 +61,43 @@ const EditCommentPage = () => {
 	};
 
 	return (
-		sessionUser && (
+		sessionUser &&
+		selectedSong && (
 			<div className="edit-page-background">
-				<div id="edit-form-text">
-					<h2>Edit Your Song</h2>
-				</div>
-				<div className="edit-form-container">
-					<div className="edit-form-wrapper-left">
-						<form>
-							<div>
-								{errors.map((error, ind) => (
-									<div className="error-body" key={ind}>
-										<ul>
-											<li className="error-item">
-												{error}
-											</li>
-										</ul>
-									</div>
-								))}
-							</div>
-							<div>
-								<label>Comment: </label>
-								<input
-									type="text"
-									name="body"
-									onChange={(e) => setBody(e.target.value)}
-									maxLength={200}
-									value={body}
-								/>
-							</div>
-							<div>
-								<div>
-									<button onClick={handleSubmit}>Edit</button>
-									<button onClick={handleCancel}>
-										Cancel
-									</button>
-								</div>
-							</div>
-						</form>
+				<div className="edit-comment-container">
+					<div className="comment-edit-title">
+						<h1>Edit Your Comment</h1>
 					</div>
-					{/* <div className="edit-form-wrapper-right">
-						<div className="edit-img-wrapper">
-							<img src={song?.previewImage} alt="songimg" />
+					<div>
+						<img src={selectedSong.previewImage} />
+						<h2> {selectedSong.title}</h2>
+					</div>
+
+					<form>
+						<div>
+							{errors.map((error, ind) => (
+								<div className="error-body" key={ind}>
+									<ul>
+										<li className="error-item">{error}</li>
+									</ul>
+								</div>
+							))}
 						</div>
-					</div> */}
+						<div>
+							<label>Comment: </label>
+							<input
+								type="text"
+								name="body"
+								onChange={(e) => setBody(e.target.value)}
+								maxLength={200}
+								value={body}
+							/>
+						</div>
+						<div>
+							<button onClick={handleSubmit}>Edit</button>
+							<button onClick={handleCancel}>Cancel</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		)
