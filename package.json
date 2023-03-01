@@ -28,5 +28,8 @@
 	"homepage": "https://github.com/kympanic/SoundCloud-Clone#readme",
 	"dependencies": {
 		"zipcode-city-distance": "^1.0.6"
+	},
+	"devDependencies": {
+		"gh-pages": "^5.0.0"
 	}
 }

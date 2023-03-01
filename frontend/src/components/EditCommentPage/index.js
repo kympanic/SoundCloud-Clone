@@ -68,36 +68,46 @@ const EditCommentPage = () => {
 					<div className="comment-edit-title">
 						<h1>Edit Your Comment</h1>
 					</div>
-					<div>
-						<img src={selectedSong.previewImage} />
-						<h2> {selectedSong.title}</h2>
-					</div>
-
-					<form>
+					<div className="edit-comment-card">
 						<div>
-							{errors.map((error, ind) => (
-								<div className="error-body" key={ind}>
-									<ul>
-										<li className="error-item">{error}</li>
-									</ul>
-								</div>
-							))}
-						</div>
-						<div>
-							<label>Comment: </label>
-							<input
-								type="text"
-								name="body"
-								onChange={(e) => setBody(e.target.value)}
-								maxLength={200}
-								value={body}
+							<h2 className="edit-comment-song-title">
+								{" "}
+								{selectedSong.title}
+							</h2>
+							<img
+								className="edit-songcomment-img"
+								src={selectedSong.previewImage}
 							/>
 						</div>
-						<div>
-							<button onClick={handleSubmit}>Edit</button>
-							<button onClick={handleCancel}>Cancel</button>
-						</div>
-					</form>
+						<form>
+							<div>
+								{errors.map((error, ind) => (
+									<div className="error-body" key={ind}>
+										<ul>
+											<li className="error-item">
+												{error}
+											</li>
+										</ul>
+									</div>
+								))}
+							</div>
+							<div className="edit-comment-form">
+								<label>Comment: </label>
+								<textarea
+									className="edit-comment-input"
+									type="text"
+									name="body"
+									onChange={(e) => setBody(e.target.value)}
+									maxLength={200}
+									value={body}
+								/>
+							</div>
+							<div>
+								<button onClick={handleSubmit}>Edit</button>
+								<button onClick={handleCancel}>Cancel</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		)
