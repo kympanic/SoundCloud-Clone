@@ -93,18 +93,28 @@ const EditCommentPage = () => {
 							</div>
 							<div className="edit-comment-form">
 								<label>Comment: </label>
-								<textarea
+								<input
 									className="edit-comment-input"
 									type="text"
 									name="body"
 									onChange={(e) => setBody(e.target.value)}
-									maxLength={200}
+									maxLength={80}
 									value={body}
 								/>
 							</div>
-							<div>
-								<button onClick={handleSubmit}>Edit</button>
-								<button onClick={handleCancel}>Cancel</button>
+							<div className="editform-btns-container">
+								<button
+									className="editform-comment-btn"
+									onClick={handleSubmit}
+								>
+									Edit
+								</button>
+								<button
+									className="editform-comment-btn"
+									onClick={handleCancel}
+								>
+									Cancel
+								</button>
 							</div>
 						</form>
 					</div>
