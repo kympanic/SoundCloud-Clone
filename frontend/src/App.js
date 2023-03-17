@@ -9,6 +9,7 @@ import EditCommentPage from "./components/EditCommentPage";
 import PageNotFound from "./components/PageNotFound";
 import UploadSongPage from "./components/UploadSongPage";
 import DeleteSongPage from "./components/DeleteSongPage";
+import ProfilePage from "./components/ProfilePage";
 import Navigation from "./components/Navigation";
 import Player from "./components/AudioPlayer";
 import * as sessionActions from "./store/session";
@@ -42,6 +43,9 @@ function App() {
 						</Route>
 						<Route exact path="/comments/:commentId/edit">
 							<EditCommentPage />
+						</Route>
+						<Route exact path="/profile/:userId">
+							<ProfilePage />
 						</Route>
 						<Route exact path="/upload/song">
 							<UploadSongPage />
