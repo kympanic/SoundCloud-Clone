@@ -4,7 +4,7 @@ const {
 	requireAuth,
 	restoreUser,
 } = require("../../utils/auth");
-const { Song, Album, Playlist } = require("../../db/models");
+const { Song, Album, Playlist, Comment, User } = require("../../db/models");
 const router = express.Router();
 
 // get all songs from created by the current user
@@ -18,6 +18,18 @@ router.get("/songs", requireAuth, restoreUser, async (req, res) => {
 	});
 
 	res.json({ Songs });
+});
+
+// get all comments created by the current user
+
+router.get("/:userId/comments", restoreUser, async (req, res) => {
+	const { userId } = req.params;
+	const Comments = await Comment.findAll({
+		where: {
+			userId,
+		},
+	});
+	res.json({ Comments });
 });
 
 //get all albums created by current user

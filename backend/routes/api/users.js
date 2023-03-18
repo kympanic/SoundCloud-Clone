@@ -12,6 +12,17 @@ const {
 } = require("../../middleware/validationCheck");
 
 // Sign up
+
+//get all users
+router.get("/", restoreUser, async (req, res) => {
+	const users = await User.findAll({
+		order: [["createdAt", "DESC"]],
+	});
+	return res.json({
+		users,
+	});
+});
+
 router.post("/", validateSignup, validateUserEmail, async (req, res) => {
 	const { firstName, lastName, username, email, password, previewImage } =
 		req.body;

@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_COMMENTS = "/comments/getallcomments";
 const ADD_COMMENT = "/comments/add_comment";
+
 export const getComments = (payload) => ({
 	type: GET_COMMENTS,
 	payload,
@@ -14,6 +15,14 @@ export const addComment = (comment) => ({
 
 export const getAllComments = (songId) => async (dispatch) => {
 	const res = await csrfFetch(`/api/songs/${songId}/comments`);
+	if (res.ok) {
+		const payload = await res.json();
+		dispatch(getComments(payload));
+	}
+};
+
+export const getAllUserComments = (userId) => async (dispatch) => {
+	const res = await csrfFetch(`/api/user/${userId}/comments`);
 	if (res.ok) {
 		const payload = await res.json();
 		dispatch(getComments(payload));
