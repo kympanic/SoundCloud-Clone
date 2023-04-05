@@ -42,6 +42,7 @@ router.post("/", validateLogin, async (req, res, next) => {
 		lastName: user.lastName,
 		email: user.email,
 		username: user.username,
+		previewImage: user.previewImage,
 		token: userToken,
 	};
 

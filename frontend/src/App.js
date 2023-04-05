@@ -14,13 +14,14 @@ import Navigation from "./components/Navigation";
 import Player from "./components/AudioPlayer";
 import * as sessionActions from "./store/session";
 import { getAllSongs } from "./store/songs";
-
+import { getAllUsers } from "./store/users";
 function App() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 		dispatch(getAllSongs());
+		dispatch(getAllUsers());
 	}, [dispatch]);
 
 	return (

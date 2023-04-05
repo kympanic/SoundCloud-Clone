@@ -9,7 +9,6 @@ function ProfileButton() {
 	const [showMenu, setShowMenu] = useState(false);
 	const currentUser = useSelector((state) => state?.session?.user);
 	const history = useHistory();
-	console.log(currentUser.user);
 	const openMenu = () => {
 		if (showMenu) return;
 		setShowMenu(true);
@@ -17,7 +16,7 @@ function ProfileButton() {
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		history.push(`/profile/${currentUser.user.id}`);
+		history.push(`/profile/${currentUser?.user?.id}`);
 	};
 
 	useEffect(() => {

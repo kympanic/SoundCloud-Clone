@@ -11,6 +11,7 @@ const getUsers = (payload) => {
 
 export const getAllUsers = () => async (dispatch) => {
 	const res = await csrfFetch(`/api/users`);
+	console.log("is this hitting?");
 	if (res.ok) {
 		const payload = await res.json();
 		dispatch(getUsers(payload));
