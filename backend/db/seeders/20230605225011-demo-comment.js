@@ -69,12 +69,12 @@ const demoComment = [
 ];
 
 module.exports = {
-	async up(queryInterface, Sequelize) {
+	up: async (queryInterface, Sequelize) => {
 		options.tableName = "Comments";
 		await queryInterface.bulkInsert(options, demoComment, {});
 	},
 
-	async down(queryInterface, Sequelize) {
+	down: async (queryInterface, Sequelize) => {
 		options.tableName = "Comments";
 		await queryInterface.bulkDelete(options, null, {});
 	},
