@@ -21,12 +21,12 @@ const demoPlaylistSongs = [
 ];
 
 module.exports = {
-	up: async (queryInterface, Sequelize) => {
+	async up(queryInterface, Sequelize) {
 		options.tableName = "PlaylistSongs";
 		await queryInterface.bulkInsert(options, demoPlaylistSongs, {});
 	},
 
-	down: async (queryInterface, Sequelize) => {
+	async down(queryInterface, Sequelize) {
 		options.tableName = "PlaylistSongs";
 		await queryInterface.bulkDelete(options, null, {});
 	},
